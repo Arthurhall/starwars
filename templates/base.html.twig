@@ -1,12 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="Death-Star.ico" />
+        <title>{% block title %}StarWars{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+            <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">StarWars</a>
+                <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+                <ul class="navbar-nav px-3">
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+            </nav>
+
+            {% macro nav(label, route, icon) %}
+                {% set is_current = app.request.attributes.get('_route') == route %}
+
+                <li class="nav-item">
+                    <a class="nav-link {% if is_current %}active{% endif %}" href="{{ path(route) }}">
+                        <span data-feather="{{ icon }}"></span>
+                        {{ label }}
+                        {% if is_current %}<span class="sr-only">(current)</span>{% endif %}
+                    </a>
+                </li>
+            {% endmacro %}
+            {% import _self as self %}
+
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                      <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            {{ self.nav('Home', 'home_index', 'home') }}
+                            {{ self.nav('Films', 'film_index', 'film') }}
+                            {{ self.nav('Planets', 'planet_index', 'globe') }}
+                            {{ self.nav('Peoples', 'people_index', 'users') }}
+                        </ul>
+                      </div>
+                    </nav>
+
+                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                        {% block content_head %}
+                            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                                <h1 class="h2">
+                                    {% block content_title %}{% endblock %}
+                                </h1>
+                                <div class="btn-toolbar mb-2 mb-md-0">
+                                    <div class="btn-group mr-2">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                        <span data-feather="calendar"></span>
+                                        This week
+                                    </button>
+                                </div>
+                            </div>
+                        {% endblock %}
+                        {% block content %}
+                        {% endblock %}
+                    </main>
+                </div>
+            </div>
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
