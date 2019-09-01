@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}Films{% endblock %}
+
+{% block content %}
+    {% macro film(film) %}
+        {{ dump(film) }}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ film.episode_id }}. {{ film.title }}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{ film.director }} - {{ date(film.release_date)|date('d/m/Y') }}
+                </h6>
+                <p class="card-text">{{ film.opening_crawl|nl2br }}</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    {% endmacro %}
+
+    {% import _self as self %}
+
+    <div class="row">
+        {% for i in 0..2 %}
+            <div class="col">
+                {{ self.film(films[i]) }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for i in 3..5 %}
+            <div class="col">
+                {{ self.film(films[i]) }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-4">
+            {{ self.film(films[6]) }}
+        </div>
+    </div>
+
+{% endblock %}

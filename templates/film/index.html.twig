@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}Films{% endblock %}
+
+{% block content %}
+    {% macro film(film) %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ film.episode_id }}. {{ film.title }}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{ film.director }} - {{ date(film.release_date)|date('d/m/Y') }}
+                </h6>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Characters
+                        <span class="badge badge-info badge-pill">{{ film.characters|length }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Planets
+                        <span class="badge badge-info badge-pill">{{ film.planets|length }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Starships
+                        <span class="badge badge-info badge-pill">{{ film.starships|length }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Vehicles
+                        <span class="badge badge-info badge-pill">{{ film.vehicles|length }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Species
+                        <span class="badge badge-info badge-pill">{{ film.species|length }}</span>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary mt-2">
+                    <span data-feather="link"></span>
+                    Go
+                </a>
+            </div>
+        </div>
+    {% endmacro %}
+
+    {% import _self as self %}
+
+    <div class="row">
+        {% for i in 0..2 %}
+            <div class="col">
+                {{ self.film(films[i]) }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for i in 3..5 %}
+            <div class="col">
+                {{ self.film(films[i]) }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-4">
+            {{ self.film(films[6]) }}
+        </div>
+    </div>
+
+{% endblock %}
