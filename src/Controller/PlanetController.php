@@ -17,4 +17,14 @@ class PlanetController extends AbstractController
             'planets' => $client->getPlanets(),
         ]);
     }
+
+    /**
+     * @Route("/planets/{id}", name="planet_show")
+     */
+    public function show($id, SwClient $client)
+    {
+        return $this->render('planet/show.html.twig', [
+            'planet' => $client->getPlanet($id),
+        ]);
+    }
 }

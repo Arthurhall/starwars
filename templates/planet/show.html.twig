@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{{ planet.name }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark">
+                <tr>
+                    <th>Diameter</th>
+                    <td>{{ planet.diameter }}</td>
+                </tr>
+                <tr>
+                    <th>Population</th>
+                    <td>{{ planet.population }}</td>
+                </tr>
+                <tr>
+                    <th>Rotation period</th>
+                    <td>{{ planet.rotation_period }}</td>
+                </tr>
+                <tr>
+                    <th>Orbital period</th>
+                    <td>{{ planet.orbital_period }}</td>
+                </tr>
+                <tr>
+                    <th>Climate</th>
+                    <td>{{ planet.climate }}</td>
+                </tr>
+                <tr>
+                    <th>Gravity</th>
+                    <td>{{ planet.gravity }}</td>
+                </tr>
+                <tr>
+                    <th>Terrain</th>
+                    <td>{{ planet.terrain }}</td>
+                </tr>
+                <tr>
+                    <th>Surface water</th>
+                    <td>{{ planet.surface_water }}</td>
+                </tr>
+                <tr>
+                    <th>Residents</th>
+                    <td>{{ planet.residents|length }}</td>
+                </tr>
+                <tr>
+                    <th>Films</th>
+                    <td>{{ planet.films|length }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            <h4>People</h4>
+            <ul class="list-group list-group-flush">
+                {% for url in planet.residents %}
+                    <li class="list-group-item">
+                        {% set people = url | url_to_id | get_people %}
+                        {{ people.name }}
+                        <small class="font-italic"> - Birth year: {{ people.birth_year }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h4 class="mt-4">Films</h4>
+            <ul class="list-group list-group-flush">
+                {% for url in planet.films %}
+                    <li class="list-group-item">
+                        {% set film = url | url_to_id | get_film %}
+                        {{ film.episode_id }}. {{ film.title }}
+                        <small class="font-italic"> - Release date: {{ film.release_date }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

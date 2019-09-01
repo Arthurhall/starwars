@@ -26,22 +26,44 @@ class SwClient extends Client
     }
 
     /**
+     * @param int $id
+     *
+     * @return array
+     */
+    public function getFilm($id)
+    {
+        return $this->get(sprintf('films/%d', (int) $id));
+    }
+
+    /**
      * @return array
      */
     public function getPlanets()
     {
-        $contents = $this->get('planets');
+        return $this->get('planets');
+    }
 
-        dump($contents);
-        if (isset($contents['results'])) {
-            $films = $contents['results'];
-            usort($films, function($a, $b) {
-                return $a['episode_id'] - $b['episode_id'];
-            });
+    /**
+     * @param int $id
+     *
+     * @return array
+     */
+    public function getPlanet($id)
+    {
+        return $this->get(sprintf('planets/%d', (int) $id));
+    }
 
-            return $films;
+    /**
+     * @param int|null $id
+     *
+     * @return array
+     */
+    public function getPeople($id)
+    {
+        if (!$id) {
+            return $this->get('people');
         } else {
-            return [];
+            return $this->get(sprintf('people/%d', (int) $id));
         }
     }
 
