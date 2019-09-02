@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlanetController extends AbstractController
 {
     /**
-     * @Route("/planets", name="planet_index")
+     * @Route("/{_locale}/planets", name="planet_index")
      */
     public function index(SwClient $client)
     {
@@ -19,7 +19,7 @@ class PlanetController extends AbstractController
     }
 
     /**
-     * @Route("/planets/{id}", name="planet_show")
+     * @Route("/{_locale}/planets/{id}", name="planet_show")
      */
     public function show($id, SwClient $client)
     {

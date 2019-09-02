@@ -7,65 +7,57 @@
         <div class="col-6">
             <table class="table table-dark">
                 <tr>
-                    <th>Diameter</th>
+                    <th>{% trans %}Diameter{% endtrans %}</th>
                     <td>{{ planet.diameter }}</td>
                 </tr>
                 <tr>
-                    <th>Population</th>
+                    <th>{% trans %}Population{% endtrans %}</th>
                     <td>{{ planet.population }}</td>
                 </tr>
                 <tr>
-                    <th>Rotation period</th>
+                    <th>{% trans %}Rotation period{% endtrans %}</th>
                     <td>{{ planet.rotation_period }}</td>
                 </tr>
                 <tr>
-                    <th>Orbital period</th>
+                    <th>{% trans %}Orbital period{% endtrans %}</th>
                     <td>{{ planet.orbital_period }}</td>
                 </tr>
                 <tr>
-                    <th>Climate</th>
+                    <th>{% trans %}Climate{% endtrans %}</th>
                     <td>{{ planet.climate }}</td>
                 </tr>
                 <tr>
-                    <th>Gravity</th>
+                    <th>{% trans %}Gravity{% endtrans %}</th>
                     <td>{{ planet.gravity }}</td>
                 </tr>
                 <tr>
-                    <th>Terrain</th>
+                    <th>{% trans %}Terrain{% endtrans %}</th>
                     <td>{{ planet.terrain }}</td>
                 </tr>
                 <tr>
-                    <th>Surface water</th>
+                    <th>{% trans %}Surface water{% endtrans %}</th>
                     <td>{{ planet.surface_water }}</td>
-                </tr>
-                <tr>
-                    <th>Residents</th>
-                    <td>{{ planet.residents|length }}</td>
-                </tr>
-                <tr>
-                    <th>Films</th>
-                    <td>{{ planet.films|length }}</td>
                 </tr>
             </table>
         </div>
         <div class="col-6">
-            <h4>People</h4>
+            <h4>{% trans %}People{% endtrans %}</h4>
             <ul class="list-group list-group-flush">
                 {% for url in planet.residents %}
                     <li class="list-group-item">
                         {% set people = url | url_to_id | get_people %}
                         {{ people.name }}
-                        <small class="font-italic"> - Birth year: {{ people.birth_year }}</small>
+                        <small class="font-italic"> - {% trans %}Birth year{% endtrans %}: {{ people.birth_year }}</small>
                     </li>
                 {% endfor %}
             </ul>
-            <h4 class="mt-4">Films</h4>
+            <h4 class="mt-4">{% trans %}Films{% endtrans %}</h4>
             <ul class="list-group list-group-flush">
                 {% for url in planet.films %}
                     <li class="list-group-item">
                         {% set film = url | url_to_id | get_film %}
                         {{ film.episode_id }}. {{ film.title }}
-                        <small class="font-italic"> - Release date: {{ film.release_date }}</small>
+                        <small class="font-italic"> - {% trans %}Release date{% endtrans %}: {{ film.release_date }}</small>
                     </li>
                 {% endfor %}
             </ul>

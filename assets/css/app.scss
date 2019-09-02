@@ -3,3 +3,15 @@
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+a.navbar-brand {
+    padding-left: 57px;
+    padding-top: .74rem;
+    padding-bottom: .76rem;
+    img.header-logo {
+        width: 37px;
+        position: absolute;
+        top: 6px;
+        left: 8px;
+    }
+}

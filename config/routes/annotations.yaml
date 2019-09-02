@@ -1,3 +1,6 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+    defaults: { _locale: fr}
+    requirements:
+        _locale: '%app.supported_locales%'

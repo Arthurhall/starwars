@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PeopleController extends AbstractController
 {
     /**
-     * @Route("/people", name="people_index")
+     * @Route("/{_locale}/people", name="people_index")
      */
     public function index()
     {

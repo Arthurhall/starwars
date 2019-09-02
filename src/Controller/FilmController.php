@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FilmController extends AbstractController
 {
     /**
-     * @Route("/films", name="film_index")
+     * @Route("/{_locale}/films", name="film_index")
      */
     public function index(SwClient $client)
     {

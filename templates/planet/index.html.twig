@@ -1,22 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block content_title %}Planets{% endblock %}
+{% block content_title %}{% trans %}Planets{% endtrans %}{% endblock %}
 
 {% block content %}
+    {{ dump(planets) }}
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Diameter</th>
-                <th scope="col">Population</th>
-                <th scope="col">Rotation period</th>
-                <th scope="col">Orbital period</th>
-                <th scope="col">Climate</th>
-                <th scope="col">Gravity</th>
-                <th scope="col">Terrain</th>
-                <th scope="col">Surface water</th>
-                <th scope="col">Residents length</th>
-                <th scope="col">Films length</th>
+                <th scope="col">{% trans %}Name{% endtrans %}</th>
+                <th scope="col">{% trans %}Diameter{% endtrans %}</th>
+                <th scope="col">{% trans %}Population{% endtrans %}</th>
+                <th scope="col">{% trans %}Rotation period{% endtrans %}</th>
+                <th scope="col">{% trans %}Orbital period{% endtrans %}</th>
+                <th scope="col">{% trans %}Climate{% endtrans %}</th>
+                <th scope="col">{% trans %}Gravity{% endtrans %}</th>
+                <th scope="col">{% trans %}Terrain{% endtrans %}</th>
+                <th scope="col">{% trans %}Surface water{% endtrans %}</th>
+                <th scope="col">{% trans %}Number of character residents{% endtrans %}</th>
+                <th scope="col">{% trans %}Number of films{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +41,29 @@
                 </tr>
             {% endfor %}
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11">
+                    <nav class="float-right">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                              <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                              <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 
 {% endblock %}
