@@ -1,0 +1,19 @@
+services:
+    App\Endpoint\AbstractEndpoint:
+        abstract: true
+        calls:
+            - [setClient, ['@App\Client\SwApiClient']]
+            - [setSerializer, ['@serializer']]
+
+    App\Endpoint\CharactersEndpoint:
+            parent: App\Endpoint\AbstractEndpoint
+    App\Endpoint\FilmsEndpoint:
+            parent: App\Endpoint\AbstractEndpoint
+    App\Endpoint\PlanetsEndpoint:
+            parent: App\Endpoint\AbstractEndpoint
+    App\Endpoint\SpeciesEndpoint:
+            parent: App\Endpoint\AbstractEndpoint
+    App\Endpoint\StarshipsEndpoint:
+            parent: App\Endpoint\AbstractEndpoint
+    App\Endpoint\VehiclesEndpoint:
+            parent: App\Endpoint\AbstractEndpoint

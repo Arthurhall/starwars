@@ -35,17 +35,19 @@
                     </a>
                 </li>
             {% endmacro %}
-            {% import _self as self %}
 
             <div class="container-fluid">
                 <div class="row">
                     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                       <div class="sidebar-sticky">
                         <ul class="nav flex-column">
-                            {{ self.nav('Home'|trans, 'home_index', 'home') }}
-                            {{ self.nav('Films'|trans, 'film_index', 'film') }}
-                            {{ self.nav('Planets'|trans, 'planet_index', 'globe') }}
-                            {{ self.nav('People'|trans, 'people_index', 'users') }}
+                            {{ _self.nav('Home'|trans, 'home_index', 'home') }}
+                            {{ _self.nav('Films'|trans, 'film_index', 'film') }}
+                            {{ _self.nav('Planets'|trans, 'planet_index', 'globe') }}
+                            {{ _self.nav('People'|trans, 'character_index', 'users') }}
+                            {{ _self.nav('Starship'|trans, 'starship_index', 'navigation') }}
+                            {{ _self.nav('Species'|trans, 'species_index', 'layers') }} <!-- aperture -->
+                            {{ _self.nav('Vehicle'|trans, 'vehicle_index', 'truck') }}
                         </ul>
                       </div>
                     </nav>

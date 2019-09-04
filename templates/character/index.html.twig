@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{% trans %}People{% endtrans %}{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">{% trans %}Name{% endtrans %}</th>
+                <th scope="col">{% trans %}Birth year{% endtrans %}</th>
+                <th scope="col">{% trans %}Eye color{% endtrans %}</th>
+                <th scope="col">{% trans %}gender{% endtrans %}</th>
+                <th scope="col">{% trans %}Hair color{% endtrans %}</th>
+                <th scope="col">{% trans %}Height{% endtrans %}</th>
+                <th scope="col">{% trans %}Mass{% endtrans %}</th>
+                <th scope="col">{% trans %}Skin color{% endtrans %}</th>
+                <th scope="col">{% trans %}Homeworld{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for character in characters %}
+                <tr>
+                    <th scope="row">
+                        <a href="{{ path('character_show', {'id': character.url | url_to_id}) }}">
+                            {{ character.name }}
+                        </a>
+                    </th>
+                    <td>{{ character.birth_year }}</td>
+                    <td>{{ character.eye_color }}</td>
+                    <td>{{ character.gender }}</td>
+                    <td>{{ character.hair_color }}</td>
+                    <td>{{ character.height }}</td>
+                    <td>{{ character.mass }}</td>
+                    <td>{{ character.skin_color }}</td>
+                    <td>{{ character.homeworld }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11">
+                    {% import '_paginator.html.twig' as paginator %}
+                    {{ paginator.paginate(planets, 'planet_index') }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

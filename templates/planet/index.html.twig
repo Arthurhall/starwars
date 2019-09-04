@@ -3,7 +3,6 @@
 {% block content_title %}{% trans %}Planets{% endtrans %}{% endblock %}
 
 {% block content %}
-    {{ dump(planets) }}
     <table class="table">
         <thead>
             <tr>
@@ -21,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for planet in planets.results %}
+            {% for planet in planets %}
                 <tr>
                     <th scope="row">
                         <a href="{{ path('planet_show', {'id': planet.url | url_to_id}) }}">
@@ -44,23 +43,8 @@
         <tfoot>
             <tr>
                 <td colspan="11">
-                    <nav class="float-right">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                              <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    {% import '_paginator.html.twig' as paginator %}
+                    {{ paginator.paginate(planets, 'planet_index') }}
                 </td>
             </tr>
         </tfoot>

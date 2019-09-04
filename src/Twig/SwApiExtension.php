@@ -2,13 +2,13 @@
 
 namespace App\Twig;
 
-use App\Client\SwClient;
+use App\Client\SwApiClient;
 use App\Converter\UrlToIdConverter;
 use App\Converter\UrlToPageConverter;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class SwClientExtension extends AbstractExtension
+class SwApiExtension extends AbstractExtension
 {
     /**
      * @var UrlToIdConverter
@@ -21,16 +21,16 @@ class SwClientExtension extends AbstractExtension
     private $urlToPageConverter;
 
     /**
-     * @var SwClient
+     * @var SwApiClient
      */
     private $client;
 
     /**
      * @param UrlToIdConverter $urlToIdConverter
      * @param UrlToPageConverter $urlToPageConverter
-     * @param SwClient $client
+     * @param SwApiClient $client
      */
-    public function __construct(UrlToIdConverter $urlToIdConverter, UrlToPageConverter $urlToPageConverter, SwClient $client)
+    public function __construct(UrlToIdConverter $urlToIdConverter, UrlToPageConverter $urlToPageConverter, SwApiClient $client)
     {
         $this->urlToIdConverter = $urlToIdConverter;
         $this->urlToPageConverter = $urlToPageConverter;

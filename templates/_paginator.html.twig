@@ -1,0 +1,27 @@
+{% macro paginate(collection, route) %}
+    <nav class="float-right">
+        <ul class="pagination">
+            <li class="page-item {% if not collection.hasPrevious %}disabled{% endif %}">
+                <a class="page-link"
+                    href="{{ collection.hasPrevious ? path(route, {'page': collection.currentPage - 1}) : '#' }}"
+                    aria-label="Previous"
+                >
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for i in 1..collection.totalPage %}
+                <li class="page-item {% if collection.currentPage == i %}active{% endif %}">
+                    <a class="page-link" href="{{ path(route, {'page': i}) }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if not collection.hasNext %}disabled{% endif %}">
+                <a class="page-link"
+                   href="{{ collection.hasNext ? path(route, {'page': collection.currentPage + 1}) : '#' }}"
+                   aria-label="Next"
+                >
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endmacro %}

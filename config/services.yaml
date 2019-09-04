@@ -24,7 +24,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Client\SwClient:
+    App\Client\SwApiClient:
         arguments:
             - { base_uri: https://swapi.co/api/, timeout: 5.0, headers: {content-type: application/json}}
         tags: ['csa_guzzle.client']
