@@ -4,6 +4,7 @@ services:
         calls:
             - [setClient, ['@App\Client\SwApiClient']]
             - [setSerializer, ['@serializer']]
+            - [setUrlToIdConverter, ['@App\Converter\UrlToIdConverter']]
 
     App\Endpoint\CharactersEndpoint:
             parent: App\Endpoint\AbstractEndpoint

@@ -12,7 +12,7 @@ class SwApiClient extends Client
      */
     public function getFilms(int $page = 1)
     {
-        return $this->get(sprintf('films?page=%d', $page));
+        return $this->get(sprintf('films/?page=%d', $page));
     }
 
     /**
@@ -22,7 +22,7 @@ class SwApiClient extends Client
      */
     public function getFilm(int $id)
     {
-        return $this->get(sprintf('films/%d', $id));
+        return $this->get(sprintf('films/%d/', $id));
     }
 
     /**
@@ -30,7 +30,7 @@ class SwApiClient extends Client
      */
     public function getPlanets(int $page = 1)
     {
-        return $this->get(sprintf('planets?page=%d', $page));
+        return $this->get(sprintf('planets/?page=%d', $page));
     }
 
     /**
@@ -40,7 +40,7 @@ class SwApiClient extends Client
      */
     public function getPlanet(int $id)
     {
-        return $this->get(sprintf('planets/%d', $id));
+        return $this->get(sprintf('planets/%d/', $id));
     }
 
     /**
@@ -50,7 +50,7 @@ class SwApiClient extends Client
      */
     public function getCharacters(int $page = 1)
     {
-        return $this->get(sprintf('people?page=%d', $page));
+        return $this->get(sprintf('people/?page=%d', $page));
     }
 
     /**
@@ -60,7 +60,7 @@ class SwApiClient extends Client
      */
     public function getCharacter(int $id)
     {
-        return $this->get(sprintf('people/%d', $id));
+        return $this->get(sprintf('people/%d/', $id));
     }
 
     /**
@@ -68,7 +68,7 @@ class SwApiClient extends Client
      */
     public function getStarships(int $page = 1)
     {
-        return $this->get(sprintf('starships?page=%d', $page));
+        return $this->get(sprintf('starships/?page=%d', $page));
     }
 
     /**
@@ -78,7 +78,7 @@ class SwApiClient extends Client
      */
     public function getStarship(int $id)
     {
-        return $this->get(sprintf('starships/%d', $id));
+        return $this->get(sprintf('starships/%d/', $id));
     }
 
     /**
@@ -86,7 +86,7 @@ class SwApiClient extends Client
      */
     public function getVehicles(int $page = 1)
     {
-        return $this->get(sprintf('vehicles?page=%d', $page));
+        return $this->get(sprintf('vehicles/?page=%d', $page));
     }
 
     /**
@@ -96,7 +96,7 @@ class SwApiClient extends Client
      */
     public function getVehicle(int $id)
     {
-        return $this->get(sprintf('vehicles/%d', $id));
+        return $this->get(sprintf('vehicles/%d/', $id));
     }
 
     /**
@@ -104,7 +104,7 @@ class SwApiClient extends Client
      */
     public function getSpecies(int $page = 1)
     {
-        return $this->get(sprintf('vehicles?page=%d', $page));
+        return $this->get(sprintf('vehicles/?page=%d', $page));
     }
 
     /**
@@ -114,6 +114,6 @@ class SwApiClient extends Client
      */
     public function getOneSpecies(int $id)
     {
-        return $this->get(sprintf('vehicles/%d', $id));
+        return $this->get(sprintf('vehicles/%d/', $id));
     }
 }

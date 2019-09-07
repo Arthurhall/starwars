@@ -24,7 +24,6 @@ class PlanetController extends AbstractController
      */
     public function show($id, SwApiManager $swApiManager)
     {
-        dump($swApiManager->planets()->get($id));
         return $this->render('planet/show.html.twig', [
             'planet' => $swApiManager->planets()->get($id),
         ]);

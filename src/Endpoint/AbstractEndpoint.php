@@ -3,6 +3,7 @@
 namespace App\Endpoint;
 
 use App\Client\SwApiClient;
+use App\Converter\UrlToIdConverter;
 use App\Model\Character;
 use App\Model\Collection;
 use App\Model\Film;
@@ -28,6 +29,16 @@ abstract class AbstractEndpoint
     protected $serializer;
 
     /**
+     * @var UrlToIdConverter
+     */
+    protected $urlToIdConverter;
+
+    /**
+     * @var array
+     */
+    protected $serializerGroups;
+
+    /**
      * @param SwApiClient $client
      */
     public function setClient(SwApiClient $client)
@@ -44,6 +55,24 @@ abstract class AbstractEndpoint
     }
 
     /**
+     * @param array $groups
+     */
+    public function setSerializerGroups(array $groups = [])
+    {
+        $this->serializerGroups = $groups;
+
+        return $this;
+    }
+
+    /**
+     * @param UrlToIdConverter $urlToIdConverter
+     */
+    public function setUrlToIdConverter(UrlToIdConverter $urlToIdConverter)
+    {
+        $this->urlToIdConverter = $urlToIdConverter;
+    }
+
+    /**
      * @param ResponseInterface $response
      * @param string $class
      *
@@ -51,7 +80,12 @@ abstract class AbstractEndpoint
      */
     protected function hydrateOne(ResponseInterface $response, string $class)
     {
-        return $this->serializer->deserialize($response->getBody()->getContents(), $class, 'json');
+        return $this->serializer->deserialize(
+            $response->getBody()->getContents(),
+            $class,
+            'json',
+            $this->getContext(),
+        );
     }
 
     /**
@@ -63,7 +97,8 @@ abstract class AbstractEndpoint
     protected function hydrateMany(ResponseInterface $response, string $class, int $page)
     {
         $data = $this->serializer->decode($response->getBody()->getContents(), 'json');
-        $results = $this->serializer->denormalize($data['results'], $class.'[]', 'json');
+        $this->serializerGroups = ['property'];
+        $results = $this->serializer->denormalize($data['results'], $class.'[]', 'json', $this->getContext());
 
         $collection = new Collection($results);
         $collection->setEndpoint($this)
@@ -77,5 +112,20 @@ abstract class AbstractEndpoint
         );
 
         return $collection;
+    }
+
+    /**
+     * @return array
+     */
+    private function getContext()
+    {
+        $context = [
+            'enable_max_depth' => true,
+        ];
+        if ($this->serializerGroups) {
+            $context['groups'] = $this->serializerGroups;
+        }
+
+        return $context;
     }
 }

@@ -2,39 +2,90 @@
 
 namespace App\Model;
 
+use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 class Character
 {
-    /** @var string */
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $name;
-    /** @var string */
-    public $birth_year;
-    /** @var string */
-    public $eye_color;
-    /** @var string */
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $birthYear;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $eyeColor;
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $gender;
-    /** @var string */
-    public $hair_color;
-    /** @var int cm */
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $hairColor;
+    /**
+     * @var string cm
+     * @Groups("property")
+     */
     public $height;
-    /** @var int kg */
+    /**
+     * @var string kg
+     * @Groups("property")
+     */
     public $mass;
-    /** @var string */
-    public $skin_color;
-    /** @var \SWAPI\Models\Planet */
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $skinColor;
+    /**
+     * @var \App\Model\Planet
+     * @Groups("property")
+     */
     public $homeworld;
-    /** @var \SWAPI\Models\Film[] */
+    /**
+     * @var \App\Model\Film[]
+     * @MaxDepth(1)
+     */
     public $films = [];
-    /** @var \SWAPI\Models\Species[] */
+    /**
+     * @var \App\Model\Species[]
+     * @MaxDepth(1)
+     */
     public $species = [];
-    /** @var \SWAPI\Models\Starship[] */
+    /**
+     * @var \App\Model\Starship[]
+     * @MaxDepth(1)
+     */
     public $starships = [];
-    /** @var \SWAPI\Models\Vehicle[] */
+    /**
+     * @var \App\Model\Vehicle[]
+     * @MaxDepth(1)
+     */
     public $vehicles = [];
-    /** @var \DateTime */
+    /**
+     * @var \DateTime
+     * @Groups("property")
+     */
     public $created;
-    /** @var \DateTime */
+    /**
+     * @var \DateTime
+     * @Groups("property")
+     */
     public $edited;
-    /** @var string */
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $url;
 
     public function __construct($url = null)

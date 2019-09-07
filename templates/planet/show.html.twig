@@ -16,11 +16,11 @@
                 </tr>
                 <tr>
                     <th>{% trans %}Rotation period{% endtrans %}</th>
-                    <td>{{ planet.rotation_period }}</td>
+                    <td>{{ planet.rotationPeriod }}</td>
                 </tr>
                 <tr>
                     <th>{% trans %}Orbital period{% endtrans %}</th>
-                    <td>{{ planet.orbital_period }}</td>
+                    <td>{{ planet.orbitalPeriod }}</td>
                 </tr>
                 <tr>
                     <th>{% trans %}Climate{% endtrans %}</th>
@@ -36,28 +36,28 @@
                 </tr>
                 <tr>
                     <th>{% trans %}Surface water{% endtrans %}</th>
-                    <td>{{ planet.surface_water }}</td>
+                    <td>{{ planet.surfaceWater }}</td>
                 </tr>
             </table>
         </div>
         <div class="col-6">
             <h4>{% trans %}People{% endtrans %}</h4>
             <ul class="list-group list-group-flush">
-                {% for url in planet.residents %}
+                {% for character in planet.residents %}
                     <li class="list-group-item">
-                        {% set people = url | url_to_id | get_people %}
-                        {{ people.name }}
-                        <small class="font-italic"> - {% trans %}Birth year{% endtrans %}: {{ people.birth_year }}</small>
+                        {#{% set people = url | url_to_id | get_people %}#}
+                        {{ character.name }}
+                        <small class="font-italic"> - {% trans %}Birth year{% endtrans %}: {{ character.birthYear }}</small>
                     </li>
                 {% endfor %}
             </ul>
             <h4 class="mt-4">{% trans %}Films{% endtrans %}</h4>
             <ul class="list-group list-group-flush">
-                {% for url in planet.films %}
+                {% for film in planet.films %}
                     <li class="list-group-item">
-                        {% set film = url | url_to_id | get_film %}
-                        {{ film.episode_id }}. {{ film.title }}
-                        <small class="font-italic"> - {% trans %}Release date{% endtrans %}: {{ film.release_date }}</small>
+                        {#{% set film = url | url_to_id | get_film %}#}
+                        {{ film.episodeId }}. {{ film.title }}
+                        <small class="font-italic"> - {% trans %}Release date{% endtrans %}: {{ film.releaseDate | date('d/m/Y') }}</small>
                     </li>
                 {% endfor %}
             </ul>

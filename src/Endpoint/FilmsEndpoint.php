@@ -3,36 +3,24 @@
 namespace App\Endpoint;
 
 use App\Model\Film;
-use App\Model\Collection;
 
 class FilmsEndpoint extends AbstractEndpoint
 {
     public function index($page = 1)
     {
-//        usort($films, function($a, $b) {
-//            return $a['episode_id'] - $b['episode_id'];
-//        });
-        $request = $this->http->createRequest("GET", sprintf("films/?page=%d", $page));
-        $response = $this->http->send($request);
+        $response = $this->client->getFilms($page);
 
-        $collection = new Collection;
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateMany($response->json(), 'App\Model\Film');
-        }
-
-        return $this->handleResponse($response, $request, $collection);
+        return $this->hydrateMany($response, Film::class, $page);
     }
 
     public function get($id)
     {
-        $request = $this->http->createRequest("GET", sprintf("films/%d/", $id));
-        $response = $this->http->send($request);
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateOne($response->json(), new Film);
+        if (is_string($id)) {
+            $response = $this->client->getFilm($this->urlToIdConverter->convert($id));
+        } else {
+            $response = $this->client->getFilm($id);
         }
 
-        return $this->handleResponse($response, $request);
+        return $this->hydrateOne($response, Film::class);
     }
 }

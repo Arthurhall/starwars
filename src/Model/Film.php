@@ -2,33 +2,82 @@
 
 namespace App\Model;
 
+use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 class Film
 {
-    /** @var string */
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $title;
-    /** @var int */
-    public $episode_id;
-    /** @var string */
-    public $opening_crawl;
-    /** @var string */
+    /**
+     * @var int
+     * @Groups("property")
+     */
+    public $episodeId;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $openingCrawl;
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $director;
-    /** @var string */
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $producer;
-    /** @var \SWAPI\Models\Character[] */
+    /**
+     * @var \App\Model\Character[]
+     * @MaxDepth(1)
+     * @Groups("relation")
+     */
     public $characters;
-    /** @var \SWAPI\Models\Planet[] */
+    /**
+     * @var \App\Model\Planet[]
+     * @MaxDepth(1)
+     * @Groups("relation")
+     */
     public $planets;
-    /** @var \SWAPI\Models\Species[] */
+    /**
+     * @var \App\Model\Species[]
+     * @MaxDepth(1)
+     * @Groups("relation")
+     */
     public $species;
-    /** @var \SWAPI\Models\Starship[] */
+    /**
+     * @var \App\Model\Starship[]
+     * @MaxDepth(1)
+     * @Groups("relation")
+     */
     public $starships;
-    /** @var \SWAPI\Models\Vehicle[] */
+    /**
+     * @var \App\Model\Vehicle[]
+     * @MaxDepth(1)
+     * @Groups("relation")
+     */
     public $vehicles;
+    /**
+     * @var \DateTime
+     * @Groups("property")
+     */
+    public $releaseDate;
     /** @var \DateTime */
     public $created;
-    /** @var \DateTime */
+    /**
+     * @var \DateTime
+     * @Groups("property")
+     */
     public $edited;
-    /** @var string */
+    /**
+     * @var string
+     * @Groups("property")
+     */
     public $url;
 
     public function __construct($url = null)

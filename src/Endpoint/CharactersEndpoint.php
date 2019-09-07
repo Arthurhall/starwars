@@ -23,13 +23,12 @@ class CharactersEndpoint extends AbstractEndpoint
 
     public function get($id)
     {
-        $request = $this->http->createRequest("GET", sprintf("people/%d/", $id));
-        $response = $this->http->send($request);
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateOne($response->json(), new Character);
+        if (is_string($id)) {
+            $response = $this->client->getCharacter($this->urlToIdConverter->convert($id));
+        } else {
+            $response = $this->client->getCharacter($id);
         }
 
-        return $this->handleResponse($response, $request);
+        return $this->hydrateOne($response, Character::class);
     }
 }
