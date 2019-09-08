@@ -1,0 +1,6 @@
+results: >-
+    {results, plural,
+        =0    {no results}
+        one   {# result}
+        other {# results}
+    }

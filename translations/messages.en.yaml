@@ -1,0 +1,58 @@
+Home: Home
+Films: Films
+Planets: Planets
+People: People
+Starship: Starship
+Species: Species
+Vehicle: Vehicle
+Character: Character
+Name: Name
+'Birth year': 'Birth year'
+'Eye color': 'Eye color'
+gender: gender
+'Hair color': 'Hair color'
+'Eye colors': 'Eye colors'
+'Hair colors': 'Hair colors'
+'Skin colors': 'Skin colors'
+Height: Height
+Mass: Mass
+'Skin color': 'Skin color'
+Homeworld: Homeworld
+Gender: Gender
+Characters: Characters
+Starships: Starships
+Vehicles: Vehicles
+See: See
+Director: Director
+Producer: Producer
+'Release date': 'Release date'
+'Opening crawl': 'Opening crawl'
+Diameter: Diameter
+Population: Population
+'Rotation period': 'Rotation period'
+'Orbital period': 'Orbital period'
+Climate: Climate
+Gravity: Gravity
+Terrain: Terrain
+'Surface water': 'Surface water'
+'Number of character residents': 'Number of character residents'
+'Number of films': 'Number of films'
+Classification: Classification
+Designation: Designation
+'Average height': 'Average height'
+'Average lifespan': 'Average lifespan'
+Language: Language
+Model: Model
+'Starship class': 'Starship class'
+Manufacturer: Manufacturer
+'Cost in credits': 'Cost in credits'
+Length: Length
+Crew: Crew
+Passengers: Passengers
+'Max atmosphering speed': 'Max atmosphering speed'
+'Hyperdrive rating': 'Hyperdrive rating'
+MGLT: MGLT
+'Cargo capacity': 'Cargo capacity'
+Consumables: Consumables
+model: model
+'Vehicle class': 'Vehicle class'
