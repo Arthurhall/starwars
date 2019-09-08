@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{{ character.name }}{% endblock %}
+
+{% block content %}
+    {% import '_swapi.html.twig' as swapi %}
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark">
+                <tr>
+                    <th>{% trans %}Birth year{% endtrans %}</th>
+                    <td>{{ character.birthYear }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Eye color{% endtrans %}</th>
+                    <td>{{ character.eyeColor }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Gender{% endtrans %}</th>
+                    <td>{{ character.gender }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Hair color{% endtrans %}</th>
+                    <td>{{ character.hairColor }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Height{% endtrans %}</th>
+                    <td>{{ character.height }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Mass{% endtrans %}</th>
+                    <td>{{ character.mass }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Skin color{% endtrans %}</th>
+                    <td>{{ character.skinColor }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Homeworld{% endtrans %}</th>
+                    <td>{{ character.homeworld.name }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            {{ swapi.relation('Films', character.films, 'Released date') }}
+            {{ swapi.relation('Species', character.species, 'Classification') }}
+            {{ swapi.relation('Starships', character.starships, 'Model') }}
+            {{ swapi.relation('Vehicles', character.vehicles, 'Model') }}
+        </div>
+    </div>
+{% endblock %}

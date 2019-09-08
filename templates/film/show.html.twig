@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{{ film.episodeId }}. {{ film.title }}{% endblock %}
+
+{% block content %}
+    {% import '_swapi.html.twig' as swapi %}
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark">
+                <tr>
+                    <th>{% trans %}Director{% endtrans %}</th>
+                    <td>{{ film.director }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Producer{% endtrans %}</th>
+                    <td>{{ film.producer }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Release date{% endtrans %}</th>
+                    <td>{{ film.releaseDate | localizeddate }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Opening crawl{% endtrans %}</th>
+                    <td>{{ film.openingCrawl | nl2br }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            {{ swapi.relation('Characters', film.characters, 'Birth year') }}
+            {{ swapi.relation('Planets', film.planets, 'Diameter') }}
+            {{ swapi.relation('Species', film.species, 'Classification') }}
+            {{ swapi.relation('Starships', film.starships, 'Model') }}
+            {{ swapi.relation('Vehicles', film.vehicles, 'Model') }}
+        </div>
+    </div>
+{% endblock %}

@@ -5,7 +5,7 @@ namespace App\Model;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-class Character
+class Character extends AbstractModel
 {
     /**
      * @var string
@@ -48,48 +48,38 @@ class Character
      */
     public $skinColor;
     /**
-     * @var \App\Model\Planet
+     * @var Planet
      * @Groups("property")
      */
     public $homeworld;
     /**
-     * @var \App\Model\Film[]
+     * @var Film[]
      * @MaxDepth(1)
      */
     public $films = [];
     /**
-     * @var \App\Model\Species[]
+     * @var Species[]
      * @MaxDepth(1)
      */
     public $species = [];
     /**
-     * @var \App\Model\Starship[]
+     * @var Starship[]
      * @MaxDepth(1)
      */
     public $starships = [];
     /**
-     * @var \App\Model\Vehicle[]
+     * @var Vehicle[]
      * @MaxDepth(1)
      */
     public $vehicles = [];
-    /**
-     * @var \DateTime
-     * @Groups("property")
-     */
-    public $created;
-    /**
-     * @var \DateTime
-     * @Groups("property")
-     */
-    public $edited;
-    /**
-     * @var string
-     * @Groups("property")
-     */
-    public $url;
 
-    public function __construct($url = null)
+    public function getName()
     {
-        $this->url = $url;
+        return $this->name;
+    }
+
+    public function getSubName()
+    {
+        return $this->birthYear;
     }
 }

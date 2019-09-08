@@ -2,43 +2,80 @@
 
 namespace App\Model;
 
-class Vehicle
-{
-    /** @var string */
-    public $name;
-    /** @var string */
-    public $model;
-    /** @var string */
-    public $manufacturer;
-    /** @var int */
-    public $cost_in_credits;
-    /** @var float */
-    public $length;
-    /** @var float */
-    public $max_atmosphering_speed;
-    /** @var string */
-    public $crew;
-    /** @var string */
-    public $passengers;
-    /** @var string */
-    public $cargo_capacity;
-    /** @var string */
-    public $consumables;
-    /** @var string */
-    public $vehicle_class;
-    /** @var string[] */
-    public $pilots;
-    /** @var \SWAPI\Models\Film[] */
-    public $films = [];
-    /** @var \DateTime */
-    public $created;
-    /** @var \DateTime */
-    public $edited;
-    /** @var string */
-    public $url;
+use DateTime;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-    public function __construct($url = null)
+class Vehicle extends AbstractModel
+{
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $name;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $model;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $manufacturer;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $costInCredits;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $length;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $maxAtmospheringSpeed;
+    /**
+     * @var string
+     * @Groups("property") */
+    public $crew;
+    /**
+     * @var string
+     * @Groups("property") */
+    public $passengers;
+    /**
+     * @var string
+     * @Groups("property") */
+    public $cargoCapacity;
+    /**
+     * @var string
+     * @Groups("property") */
+    public $consumables;
+    /**
+     * @var string
+     * @Groups("property") */
+    public $vehicleClass;
+    /**
+     * @var Character[]
+     * @Groups("relation")
+     */
+    public $pilots;
+    /**
+     * @var Film[]
+     * @Groups("relation")
+     */
+    public $films;
+
+    public function getName()
     {
-        $this->url = $url;
+        return $this->name;
+    }
+
+    public function getSubName()
+    {
+        return $this->model;
     }
 }

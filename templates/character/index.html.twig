@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block content_title %}{% trans %}People{% endtrans %}{% endblock %}
+{% block content_title %}
+    {% trans %}Character{% endtrans %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.total_count(characters) }}
+{% endblock %}
 
 {% block content %}
     <table class="table">
@@ -25,14 +29,18 @@
                             {{ character.name }}
                         </a>
                     </th>
-                    <td>{{ character.birth_year }}</td>
-                    <td>{{ character.eye_color }}</td>
+                    <td>{{ character.birthYear }}</td>
+                    <td>{{ character.eyeColor }}</td>
                     <td>{{ character.gender }}</td>
-                    <td>{{ character.hair_color }}</td>
+                    <td>{{ character.hairColor }}</td>
                     <td>{{ character.height }}</td>
                     <td>{{ character.mass }}</td>
-                    <td>{{ character.skin_color }}</td>
-                    <td>{{ character.homeworld }}</td>
+                    <td>{{ character.skinColor }}</td>
+                    <td>
+                        <a href="{{ path('planet_show', {'id': character.homeworld.url | url_to_id}) }}">
+                            {{ character.homeworld.name }}
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -40,7 +48,7 @@
             <tr>
                 <td colspan="11">
                     {% import '_paginator.html.twig' as paginator %}
-                    {{ paginator.paginate(planets, 'planet_index') }}
+                    {{ paginator.paginate(characters, 'character_index') }}
                 </td>
             </tr>
         </tfoot>

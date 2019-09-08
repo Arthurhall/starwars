@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block content_title %}{% trans %}Films{% endtrans %}{% endblock %}
+{% block content_title %}
+    {% trans %}Films{% endtrans %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.total_count(films) }}
+{% endblock %}
 
 {% block content %}
     {% macro film(film) %}
         <div class="card mb-4">
             <div class="card-body">
                 <h5 class="card-title">
-                    {{ film.episode_id }}. {{ film.title }}
+                    {{ film.episodeId }}. {{ film.title }}
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                    {{ film.director }} - {{ date(film.release_date)|date('d/m/Y') }}
+                    {{ film.director }} - {{ date(film.releaseDate)|date('d/m/Y') }}
                 </h6>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -34,9 +38,9 @@
                         <span class="badge badge-info badge-pill">{{ film.species|length }}</span>
                     </li>
                 </ul>
-                <a href="#" class="btn btn-primary mt-2">
+                <a href="{{ path('film_show', {'id': film.url | url_to_id}) }}" class="btn btn-primary mt-2">
                     <span data-feather="link"></span>
-                    Go
+                    {% trans %}See{% endtrans %}
                 </a>
             </div>
         </div>
@@ -59,9 +63,11 @@
         {% endfor %}
     </div>
     <div class="row">
-        <div class="col-4">
-            {{ self.film(films[6]) }}
-        </div>
+        {% for i in 6..8 if films[i] is defined %}
+            <div class="col-4">
+                {{ self.film(films[i]) }}
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

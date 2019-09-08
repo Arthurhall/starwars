@@ -10,16 +10,18 @@ class FilmsEndpoint extends AbstractEndpoint
     {
         $response = $this->client->getFilms($page);
 
-        return $this->hydrateMany($response, Film::class, $page);
+        $collection = $this->hydrateMany($response, Film::class, $page);
+
+        $collection->uasort(function (Film $a, Film $b) {
+            return ((int) $a->episodeId < (int) $b->episodeId) ? -1 : 1;
+        });
+
+        return $collection;
     }
 
     public function get($id)
     {
-        if (is_string($id)) {
-            $response = $this->client->getFilm($this->urlToIdConverter->convert($id));
-        } else {
-            $response = $this->client->getFilm($id);
-        }
+        $response = $this->client->getFilm($this->parseId($id));
 
         return $this->hydrateOne($response, Film::class);
     }

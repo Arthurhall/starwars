@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Client\SwApiClient;
 use App\Manager\SwApiManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,10 +22,11 @@ class CharacterController extends AbstractController
     /**
      * @Route("/{_locale}/characters/{id}", name="character_show")
      */
-    public function show($id, SwApiClient $client)
+    public function show($id, SwApiManager $swApiManager)
     {
+        dump($swApiManager->characters()->get($id));
         return $this->render('character/show.html.twig', [
-            'character' => $client->getCharacter($id),
+            'character' => $swApiManager->characters()->get($id),
         ]);
     }
 }

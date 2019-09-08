@@ -3,33 +3,20 @@
 namespace App\Endpoint;
 
 use App\Model\Vehicle;
-use App\Model\Collection;
 
 class VehiclesEndpoint extends AbstractEndpoint
 {
     public function index($page = 1)
     {
-        $request = $this->http->createRequest("GET", sprintf("vehicles/?page=%d", $page));
-        $response = $this->http->send($request);
+        $response = $this->client->getVehicles($page);
 
-        $collection = new Collection;
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateMany($response->json(), 'App\Model\Vehicle');
-        }
-
-        return $this->handleResponse($response, $request, $collection);
+        return $this->hydrateMany($response, Vehicle::class, $page);
     }
 
     public function get($id)
     {
-        $request = $this->http->createRequest("GET", sprintf("vehicles/%d/", $id));
-        $response = $this->http->send($request);
+        $response = $this->client->getVehicle($this->parseId($id));
 
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateOne($response->json(), new Vehicle);
-        }
-
-        return $this->handleResponse($response, $request);
+        return $this->hydrateOne($response, Vehicle::class);
     }
 }

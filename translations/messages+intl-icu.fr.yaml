@@ -21,3 +21,10 @@ People: Individus
 Characters: Personnages
 Number of films: Nombre de films
 Number of character residents: Nombre de personnages résidents
+
+results: >-
+    {results, plural,
+        =0    {pas de résultats}
+        one   {# résultat}
+        other {# résultats}
+    }

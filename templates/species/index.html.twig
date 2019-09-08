@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}
+    {% trans %}Species{% endtrans %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.total_count(species_collection) }}
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">{% trans %}Name{% endtrans %}</th>
+                <th scope="col">{% trans %}Classification{% endtrans %}</th>
+                <th scope="col">{% trans %}Designation{% endtrans %}</th>
+                <th scope="col">{% trans %}Average height{% endtrans %}</th>
+                <th scope="col">{% trans %}Average lifespan{% endtrans %}</th>
+                <th scope="col">{% trans %}Eye colors{% endtrans %}</th>
+                <th scope="col">{% trans %}Hair colors{% endtrans %}</th>
+                <th scope="col">{% trans %}Skin colors{% endtrans %}</th>
+                <th scope="col">{% trans %}Language{% endtrans %}</th>
+                <th scope="col">{% trans %}Homeworld{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for species in species_collection %}
+                <tr>
+                    <th scope="row">
+                        <a href="{{ path('species_show', {'id': species.url | url_to_id}) }}">
+                            {{ species.name }}
+                        </a>
+                    </th>
+                    <td>{{ species.classification }}</td>
+                    <td>{{ species.designation }}</td>
+                    <td>{{ species.averageHeight }}</td>
+                    <td>{{ species.averageLifespan }}</td>
+                    <td>{{ species.eyeColors }}</td>
+                    <td>{{ species.hairColors }}</td>
+                    <td>{{ species.skinColors }}</td>
+                    <td>{{ species.language }}</td>
+                    <td>
+                        <a href="{{ path('planet_show', {'id': species.homeworld.url | url_to_id}) }}">
+                            {{ species.homeworld.name }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11">
+                    {% import '_paginator.html.twig' as paginator %}
+                    {{ paginator.paginate(species_collection, 'species_index') }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

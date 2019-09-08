@@ -3,33 +3,20 @@
 namespace App\Endpoint;
 
 use App\Model\Starship;
-use App\Model\Collection;
 
 class StarshipsEndpoint extends AbstractEndpoint
 {
     public function index($page = 1)
     {
-        $request = $this->http->createRequest("GET", sprintf("starships/?page=%d", $page));
-        $response = $this->http->send($request);
+        $response = $this->client->getStarships($page);
 
-        $collection = new Collection;
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateMany($response->json(), 'App\Model\Starship');
-        }
-
-        return $this->handleResponse($response, $request, $collection);
+        return $this->hydrateMany($response, Starship::class, $page);
     }
 
     public function get($id)
     {
-        $request = $this->http->createRequest("GET", sprintf("starships/%d/", $id));
-        $response = $this->http->send($request);
+        $response = $this->client->getStarship($this->parseId($id));
 
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateOne($response->json(), new Starship);
-        }
-
-        return $this->handleResponse($response, $request);
+        return $this->hydrateOne($response, Starship::class);
     }
 }

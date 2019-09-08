@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{{ starship.name }}{% endblock %}
+
+{% block content %}
+    {% import '_swapi.html.twig' as swapi %}
+
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark">
+                <tr>
+                    <th>{% trans %}model{% endtrans %}</th>
+                    <td>{{ starship.model }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Starship class{% endtrans %}</th>
+                    <td>{{ starship.starshipClass }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Manufacturer{% endtrans %}</th>
+                    <td>{{ starship.manufacturer }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Cost in credits{% endtrans %}</th>
+                    <td>{{ starship.costInCredits | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Length{% endtrans %}</th>
+                    <td>{{ starship.length | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Crew{% endtrans %}</th>
+                    <td>{{ starship.crew | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Passengers{% endtrans %}</th>
+                    <td>{{ starship.passengers | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Max atmosphering Speed{% endtrans %}</th>
+                    <td>{{ starship.maxAtmospheringSpeed }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Hyperdrive rating{% endtrans %}</th>
+                    <td>{{ starship.hyperdriveRating | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}MGLT{% endtrans %}</th>
+                    <td>{{ starship.mglt }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Cargo capacity{% endtrans %}</th>
+                    <td>{{ starship.cargoCapacity | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Consumables{% endtrans %}</th>
+                    <td>{{ starship.consumables }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            {{ swapi.relation('Pilots', starship.pilots, 'Birth year') }}
+            {{ swapi.relation('Films', starship.films, 'Release date') }}
+        </div>
+    </div>
+{% endblock %}

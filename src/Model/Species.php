@@ -2,40 +2,80 @@
 
 namespace App\Model;
 
-class Species
-{
-    /** @var string */
-    public $name;
-    /** @var string */
-    public $classification;
-    /** @var string */
-    public $designation;
-    /** @var string */
-    public $average_height;
-    /** @var string */
-    public $average_lifespan;
-    public $eye_colors;
-    /** @var string */
-    public $hair_colors;
-    /** @var string */
-    public $skin_colors;
-    /** @var string */
-    public $language;
-    /** @var \SWAPI\Models\Planet */
-    public $homeworld;
-    /** @var \SWAPI\Models\Character[] */
-    public $people;
-    /** @var \SWAPI\Models\Film[] */
-    public $films;
-    /** @var \DateTime */
-    public $created;
-    /** @var \DateTime */
-    public $edited;
-    /** @var string */
-    public $url;
+use DateTime;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-    public function __construct($url = null)
+class Species extends AbstractModel
+{
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $name;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $classification;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $designation;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $averageHeight;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $averageLifespan;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $eyeColors;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $hairColors;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $skinColors;
+    /**
+     * @var string
+     * @Groups("property")
+     */
+    public $language;
+    /**
+     * @var Planet
+     * @Groups("relation")
+     */
+    public $homeworld;
+    /**
+     * @var Character[]
+     * @Groups("relation")
+     */
+    public $people;
+    /**
+     * @var Film[]
+     * @Groups("relation")
+     */
+    public $films;
+
+    public function getName()
     {
-        $this->url = $url;
+        return $this->name;
+    }
+
+    public function getSubName()
+    {
+        return $this->classification;
     }
 }

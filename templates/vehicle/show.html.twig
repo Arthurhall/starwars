@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{{ vehicle.name }}{% endblock %}
+
+{% block content %}
+    {% import '_swapi.html.twig' as swapi %}
+
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark">
+                <tr>
+                    <th>{% trans %}model{% endtrans %}</th>
+                    <td>{{ vehicle.model }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Starship class{% endtrans %}</th>
+                    <td>{{ vehicle.vehicleClass }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Manufacturer{% endtrans %}</th>
+                    <td>{{ vehicle.manufacturer }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Cost in credits{% endtrans %}</th>
+                    <td>{{ vehicle.costInCredits | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Length{% endtrans %}</th>
+                    <td>{{ vehicle.length | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Crew{% endtrans %}</th>
+                    <td>{{ vehicle.crew | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Passengers{% endtrans %}</th>
+                    <td>{{ vehicle.passengers | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Max atmosphering Speed{% endtrans %}</th>
+                    <td>{{ vehicle.maxAtmospheringSpeed }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Cargo capacity{% endtrans %}</th>
+                    <td>{{ vehicle.cargoCapacity | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Consumables{% endtrans %}</th>
+                    <td>{{ vehicle.consumables }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            {{ swapi.relation('Pilots', vehicle.pilots, 'Birth year') }}
+            {{ swapi.relation('Films', vehicle.films, 'Release date') }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}{{ species.name }}{% endblock %}
+
+{% block content %}
+    {% import '_swapi.html.twig' as swapi %}
+
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-dark">
+                <tr>
+                    <th>{% trans %}Classification{% endtrans %}</th>
+                    <td>{{ species.classification }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Designation{% endtrans %}</th>
+                    <td>{{ species.designation }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Average height{% endtrans %}</th>
+                    <td>{{ species.averageHeight | localizednumber }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Average lifespan{% endtrans %}</th>
+                    <td>{{ species.averageLifespan }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Eye colors{% endtrans %}</th>
+                    <td>{{ species.eyeColors }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Hair colors{% endtrans %}</th>
+                    <td>{{ species.hairColors }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Skin colors{% endtrans %}</th>
+                    <td>{{ species.skinColors }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Language{% endtrans %}</th>
+                    <td>{{ species.language }}</td>
+                </tr>
+                <tr>
+                    <th>{% trans %}Homeworld{% endtrans %}</th>
+                    <td>
+                        <a href="{{ path('planet_show', {'id': species.homeworld.url | url_to_id}) }}">
+                            {{ species.homeworld.name }}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6">
+            {{ swapi.relation('Characters', species.people, 'Birth year') }}
+            {{ swapi.relation('Films', species.films, 'Release date') }}
+        </div>
+    </div>
+{% endblock %}

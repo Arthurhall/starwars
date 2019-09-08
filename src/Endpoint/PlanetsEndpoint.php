@@ -15,11 +15,7 @@ class PlanetsEndpoint extends AbstractEndpoint
 
     public function get($id)
     {
-        if (is_string($id)) {
-            $response = $this->client->getPlanet($this->urlToIdConverter->convert($id));
-        } else {
-            $response = $this->client->getPlanet($id);
-        }
+        $response = $this->client->getPlanet($this->parseId($id));
 
         return $this->hydrateOne($response, Planet::class);
     }

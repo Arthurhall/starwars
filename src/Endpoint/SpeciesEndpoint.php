@@ -3,33 +3,20 @@
 namespace App\Endpoint;
 
 use App\Model\Species;
-use App\Model\Collection;
 
 class SpeciesEndpoint extends AbstractEndpoint
 {
     public function index($page = 1)
     {
-        $request = $this->http->createRequest("GET", sprintf("species/?page=%d", $page));
-        $response = $this->http->send($request);
+        $response = $this->client->getSpecies($page);
 
-        $collection = new Collection;
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateMany($response->json(), 'App\Model\Species');
-        }
-
-        return $this->handleResponse($response, $request, $collection);
+        return $this->hydrateMany($response, Species::class, $page);
     }
 
     public function get($id)
     {
-        $request = $this->http->createRequest("GET", sprintf("species/%d/", $id));
-        $response = $this->http->send($request);
+        $response = $this->client->getOneSpecies($this->parseId($id));
 
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateOne($response->json(), new Species);
-        }
-
-        return $this->handleResponse($response, $request);
+        return $this->hydrateOne($response, Species::class);
     }
 }

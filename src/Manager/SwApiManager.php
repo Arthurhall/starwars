@@ -80,17 +80,17 @@ class SwApiManager
         return $this->planetsEndpoint;
     }
 
-    public function species()
+    public function species(): SpeciesEndpoint
     {
         return $this->speciesEndpoint;
     }
 
-    public function starships()
+    public function starships(): StarshipsEndpoint
     {
         return $this->starshipsEndpoint;
     }
 
-    public function vehicles()
+    public function vehicles(): VehiclesEndpoint
     {
         return $this->vehiclesEndpoint;
     }

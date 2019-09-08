@@ -1,0 +1,17 @@
+{% macro total_count(collection) %}
+    <small class="text-secondary">
+        - {{ 'results' | trans({'results': collection.totalCount}) }}
+    </small>
+{% endmacro %}
+
+{% macro relation(label, collection, sub_label) %}
+    <h4>{{ label | trans }}</h4>
+    <ul class="list-group list-group-flush">
+        {% for relation in collection %}
+            <li class="list-group-item">
+                <a href="{{ path((relation | short_class_name | lower) ~ '_show', {'id': relation.url | url_to_id}) }}">{{ relation.name }}</a>
+                <small class="font-italic"> - {{ sub_label | trans }}: {{ relation.subName }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

@@ -3,6 +3,7 @@
 {% block content_title %}{{ planet.name }}{% endblock %}
 
 {% block content %}
+    {% import '_swapi.html.twig' as swapi %}
     <div class="row">
         <div class="col-6">
             <table class="table table-dark">
@@ -41,26 +42,8 @@
             </table>
         </div>
         <div class="col-6">
-            <h4>{% trans %}People{% endtrans %}</h4>
-            <ul class="list-group list-group-flush">
-                {% for character in planet.residents %}
-                    <li class="list-group-item">
-                        {#{% set people = url | url_to_id | get_people %}#}
-                        {{ character.name }}
-                        <small class="font-italic"> - {% trans %}Birth year{% endtrans %}: {{ character.birthYear }}</small>
-                    </li>
-                {% endfor %}
-            </ul>
-            <h4 class="mt-4">{% trans %}Films{% endtrans %}</h4>
-            <ul class="list-group list-group-flush">
-                {% for film in planet.films %}
-                    <li class="list-group-item">
-                        {#{% set film = url | url_to_id | get_film %}#}
-                        {{ film.episodeId }}. {{ film.title }}
-                        <small class="font-italic"> - {% trans %}Release date{% endtrans %}: {{ film.releaseDate | date('d/m/Y') }}</small>
-                    </li>
-                {% endfor %}
-            </ul>
+            {{ swapi.relation('People', planet.residents, 'Birth year') }}
+            {{ swapi.relation('Films', planet.films, 'Release date') }}
         </div>
     </div>
 {% endblock %}

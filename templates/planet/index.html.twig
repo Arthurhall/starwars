@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block content_title %}{% trans %}Planets{% endtrans %}{% endblock %}
+{% block content_title %}
+    {% trans %}Planets{% endtrans %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.total_count(planets) }}
+{% endblock %}
 
 {% block content %}
     <table class="table">

@@ -23,10 +23,10 @@ class StarshipController extends AbstractController
     /**
      * @Route("/{_locale}/starships/{id}", name="starship_show")
      */
-    public function show($id, SwApiClient $client)
+    public function show($id, SwApiManager $swApiManager)
     {
         return $this->render('starship/show.html.twig', [
-            'starship' => $client->getStarship($id),
+            'starship' => $swApiManager->starships()->get($id),
         ]);
     }
 }

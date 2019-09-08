@@ -80,6 +80,10 @@ abstract class AbstractEndpoint
      */
     protected function hydrateOne(ResponseInterface $response, string $class)
     {
+        if ($response->getStatusCode() == 404) {
+            return;
+        }
+
         return $this->serializer->deserialize(
             $response->getBody()->getContents(),
             $class,
@@ -96,9 +100,19 @@ abstract class AbstractEndpoint
      */
     protected function hydrateMany(ResponseInterface $response, string $class, int $page)
     {
+        if ($response->getStatusCode() == 404) {
+            return;
+        }
+
         $data = $this->serializer->decode($response->getBody()->getContents(), 'json');
-        $this->serializerGroups = ['property'];
-        $results = $this->serializer->denormalize($data['results'], $class.'[]', 'json', $this->getContext());
+        //$this->serializerGroups = ['property'];
+        $results = $this->serializer->denormalize(
+            $data['results'],
+            $class.'[]',
+            'json',
+            array_merge($this->getContext(), ['is_collection' => true]),
+        );
+        //dump($results);
 
         $collection = new Collection($results);
         $collection->setEndpoint($this)
@@ -115,9 +129,23 @@ abstract class AbstractEndpoint
     }
 
     /**
+     * @param string|int $id
+     *
+     * @return int
+     */
+    protected function parseId($id): int
+    {
+        if (is_string($id)) {
+            return $this->urlToIdConverter->convert($id);
+        }
+
+        return (int) $id;
+    }
+
+    /**
      * @return array
      */
-    private function getContext()
+    private function getContext(): array
     {
         $context = [
             'enable_max_depth' => true,

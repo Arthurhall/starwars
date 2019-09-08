@@ -3,31 +3,19 @@
 namespace App\Endpoint;
 
 use App\Model\Character;
-use App\Model\Collection;
 
 class CharactersEndpoint extends AbstractEndpoint
 {
     public function index($page = 1)
     {
-        $request = $this->http->createRequest("GET", sprintf("people/?page=%d", $page));
-        $response = $this->http->send($request);
+        $response = $this->client->getCharacters($page);
 
-        $collection = new Collection;
-
-        if ($response->getStatusCode() == 200) {
-            return $this->hydrateMany($response->json(), 'App\Model\Character');
-        }
-
-        return $this->handleResponse($response, $request, $collection);
+        return $this->hydrateMany($response, Character::class, $page);
     }
 
     public function get($id)
     {
-        if (is_string($id)) {
-            $response = $this->client->getCharacter($this->urlToIdConverter->convert($id));
-        } else {
-            $response = $this->client->getCharacter($id);
-        }
+        $response = $this->client->getCharacter($this->parseId($id));
 
         return $this->hydrateOne($response, Character::class);
     }

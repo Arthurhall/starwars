@@ -5,7 +5,7 @@ namespace App\Model;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-class Planet
+class Planet extends AbstractModel
 {
     /**
      * @var string
@@ -53,35 +53,25 @@ class Planet
      */
     public $surfaceWater;
     /**
-     * @var \App\Model\Character[]
+     * @var Character[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $residents;
     /**
-     * @var \App\Model\Film[]
+     * @var Film[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $films;
-    /**
-     * @var \DateTime
-     * @Groups("property")
-     */
-    public $created;
-    /**
-     * @var \DateTime
-     * @Groups("property")
-     */
-    public $edited;
-    /**
-     * @var string
-     * @Groups("property")
-     */
-    public $url;
 
-    public function __construct($url = null)
+    public function getName()
     {
-        $this->url = $url;
+        return $this->name;
+    }
+
+    public function getSubName()
+    {
+        return $this->diameter;
     }
 }

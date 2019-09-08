@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}
+    {% trans %}Vehicles{% endtrans %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.total_count(vehicles) }}
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">{% trans %}Name{% endtrans %}</th>
+                <th scope="col">{% trans %}Model{% endtrans %}</th>
+                <th scope="col">{% trans %}Vehicle class{% endtrans %}</th>
+                <th scope="col">{% trans %}Manufacturer{% endtrans %}</th>
+                <th scope="col">{% trans %}Cost in credits{% endtrans %}</th>
+                <th scope="col">{% trans %}Length{% endtrans %}</th>
+                <th scope="col">{% trans %}Crew{% endtrans %}</th>
+                <th scope="col">{% trans %}Passengers{% endtrans %}</th>
+                <th scope="col">{% trans %}Max atmosphering speed{% endtrans %}</th>
+                <th scope="col">{% trans %}Cargo capacity{% endtrans %}</th>
+                <th scope="col">{% trans %}Consumables{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+                <tr>
+                    <th scope="row">
+                        <a href="{{ path('vehicle_show', {'id': vehicle.url | url_to_id}) }}">
+                            {{ vehicle.name }}
+                        </a>
+                    </th>
+                    <td>{{ vehicle.model }}</td>
+                    <td>{{ vehicle.vehicleClass }}</td>
+                    <td>{{ vehicle.manufacturer }}</td>
+                    <td>{{ vehicle.costInCredits | localizednumber }}</td>
+                    <td>{{ vehicle.length | localizednumber }}</td>
+                    <td>{{ vehicle.crew | localizednumber }}</td>
+                    <td>{{ vehicle.passengers | localizednumber }}</td>
+                    <td>{{ vehicle.maxAtmospheringSpeed | localizednumber }}</td>
+                    <td>{{ vehicle.cargoCapacity | localizednumber }}</td>
+                    <td>{{ vehicle.consumables }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11">
+                    {% import '_paginator.html.twig' as paginator %}
+                    {{ paginator.paginate(vehicles, 'vehicle_index') }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}

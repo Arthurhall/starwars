@@ -16,17 +16,17 @@ class VehicleController extends AbstractController
     public function index(SwApiManager $swApiManager, Request $request)
     {
         return $this->render('vehicle/index.html.twig', [
-            'vehicles' => $swApiManager->starships()->index($request->query->getInt('page', 1)),
+            'vehicles' => $swApiManager->vehicles()->index($request->query->getInt('page', 1)),
         ]);
     }
 
     /**
      * @Route("/{_locale}/vehicles/{id}", name="vehicle_show")
      */
-    public function show($id, SwApiClient $client)
+    public function show($id, SwApiManager $swApiManager)
     {
         return $this->render('vehicle/show.html.twig', [
-            'vehicle' => $client->getVehicle($id),
+            'vehicle' => $swApiManager->vehicles()->get($id),
         ]);
     }
 }

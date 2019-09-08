@@ -2,10 +2,11 @@
 
 namespace App\Model;
 
+use DateTime;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-class Film
+class Film extends AbstractModel
 {
     /**
      * @var string
@@ -33,55 +34,48 @@ class Film
      */
     public $producer;
     /**
-     * @var \App\Model\Character[]
+     * @var Character[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $characters;
     /**
-     * @var \App\Model\Planet[]
+     * @var Planet[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $planets;
     /**
-     * @var \App\Model\Species[]
+     * @var Species[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $species;
     /**
-     * @var \App\Model\Starship[]
+     * @var Starship[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $starships;
     /**
-     * @var \App\Model\Vehicle[]
+     * @var Vehicle[]
      * @MaxDepth(1)
      * @Groups("relation")
      */
     public $vehicles;
     /**
-     * @var \DateTime
+     * @var DateTime
      * @Groups("property")
      */
     public $releaseDate;
-    /** @var \DateTime */
-    public $created;
-    /**
-     * @var \DateTime
-     * @Groups("property")
-     */
-    public $edited;
-    /**
-     * @var string
-     * @Groups("property")
-     */
-    public $url;
 
-    public function __construct($url = null)
+    public function getName()
     {
-        $this->url = $url;
+        return sprintf('%s. %s', $this->episodeId, $this->title);
+    }
+
+    public function getSubName()
+    {
+        return ($this->releaseDate instanceof DateTime) ? $this->releaseDate->format('d/m/Y') : $this->releaseDate;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Client;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 
 class SwApiClient extends Client
@@ -104,7 +105,7 @@ class SwApiClient extends Client
      */
     public function getSpecies(int $page = 1)
     {
-        return $this->get(sprintf('vehicles/?page=%d', $page));
+        return $this->get(sprintf('species/?page=%d', $page));
     }
 
     /**
@@ -114,6 +115,21 @@ class SwApiClient extends Client
      */
     public function getOneSpecies(int $id)
     {
-        return $this->get(sprintf('vehicles/%d/', $id));
+        return $this->get(sprintf('species/%d/', $id));
+    }
+
+    /**
+     * @param string $uri
+     * @param array $options
+     *
+     * @return type
+     */
+    public function get($uri, array $options = [])
+    {
+        try {
+            return parent::get($uri, $options);
+        } catch (ClientException $ex) {
+            return $ex->getResponse();
+        }
     }
 }

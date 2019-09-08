@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}
+    {% trans %}Starships{% endtrans %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.total_count(starships) }}
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">{% trans %}Name{% endtrans %}</th>
+                <th scope="col">{% trans %}Model{% endtrans %}</th>
+                <th scope="col">{% trans %}Starship class{% endtrans %}</th>
+                <th scope="col">{% trans %}Manufacturer{% endtrans %}</th>
+                <th scope="col">{% trans %}Cost in credits{% endtrans %}</th>
+                <th scope="col">{% trans %}Length{% endtrans %}</th>
+                <th scope="col">{% trans %}Crew{% endtrans %}</th>
+                <th scope="col">{% trans %}Passengers{% endtrans %}</th>
+                <th scope="col">{% trans %}Max atmosphering speed{% endtrans %}</th>
+                <th scope="col">{% trans %}Hyperdrive rating{% endtrans %}</th>
+                <th scope="col">{% trans %}MGLT{% endtrans %}</th>
+                <th scope="col">{% trans %}Cargo capacity{% endtrans %}</th>
+                <th scope="col">{% trans %}Consumables{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for starship in starships %}
+                <tr>
+                    <th scope="row">
+                        <a href="{{ path('starship_show', {'id': starship.url | url_to_id}) }}">
+                            {{ starship.name }}
+                        </a>
+                    </th>
+                    <td>{{ starship.model }}</td>
+                    <td>{{ starship.starshipClass }}</td>
+                    <td>{{ starship.manufacturer }}</td>
+                    <td>{{ starship.costInCredits | localizednumber }}</td>
+                    <td>{{ starship.length | localizednumber }}</td>
+                    <td>{{ starship.crew | localizednumber }}</td>
+                    <td>{{ starship.passengers | localizednumber }}</td>
+                    <td>{{ starship.maxAtmospheringSpeed | localizednumber }}</td>
+                    <td>{{ starship.hyperdriveRating | localizednumber }}</td>
+                    <td>{{ starship.mglt | localizednumber }}</td>
+                    <td>{{ starship.cargoCapacity | localizednumber }}</td>
+                    <td>{{ starship.consumables }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11">
+                    {% import '_paginator.html.twig' as paginator %}
+                    {{ paginator.paginate(starships, 'starship_index') }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}
