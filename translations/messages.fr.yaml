@@ -1,0 +1,61 @@
+Home: Accueil
+Name: Nom
+Title: Titre
+Films: Films
+Planets: Planètes
+Diameter: Diamètre
+Population: Population
+'Rotation period': 'Période de rotation'
+'Orbital period': 'Période orbitale'
+Climate: Climat
+Gravity: Gravité
+Terrain: Terrain
+'Surface water': 'Eaux de surface'
+Residents: Résidents
+'Birth year': 'Année de naissance'
+'Release date': 'Date de sortie'
+Vehicles: Véhicules
+Species: Espèces
+Starships: Vaisseaux
+People: Individus
+Characters: Personnages
+'Number of films': 'Nombre de films'
+'Number of character residents': 'Nombre de personnages résidents'
+
+Starship: Vaisseau
+Vehicle: Vehicule
+Character: Personnage
+'Eye color': 'Couleur des yeux'
+'Hair color': 'Couleur des cheveux'
+'Skin color': 'Couleur de peau'
+'Eye colors': 'Couleur des yeux'
+'Hair colors': 'Couleur des cheveux'
+'Skin colors': 'Couleur de peau'
+Height: Taille
+Mass: Masse
+Homeworld: Planète natale
+Gender: Genre
+gender: Genre
+See: Voir
+Director: Directeur
+Producer: Producteur
+'Opening crawl': Texte d'ouverture
+Classification: Classification
+Designation: Désignation
+'Average height': Taille moyenne
+'Average lifespan': 'Durée de vie moyenne'
+Language: Language
+Model: Modèle
+model: modèle
+'Starship class': 'Classe de vaisseau'
+Manufacturer: Fabricant
+'Cost in credits': 'Coût en crédits'
+Length: Longueur
+Crew: Equipage
+Passengers: Passagers
+'Max atmosphering speed': 'Vitesse atmosphérique maximale'
+'Hyperdrive rating': 'Indice hyperdrive'
+MGLT: MGLT
+'Cargo capacity': 'Capacité de cargaison'
+Consumables: Consommables
+'Vehicle class': 'Classe de véhicule'
