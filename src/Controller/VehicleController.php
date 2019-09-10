@@ -16,7 +16,10 @@ class VehicleController extends AbstractController
     public function index(SwApiManager $swApiManager, Request $request)
     {
         return $this->render('vehicle/index.html.twig', [
-            'vehicles' => $swApiManager->vehicles()->index($request->query->getInt('page', 1)),
+            'vehicles' => $swApiManager->vehicles()->index(
+                $request->query->getInt('page', 1),
+                $request->query->get('search')
+            ),
         ]);
     }
 

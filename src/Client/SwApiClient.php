@@ -11,9 +11,9 @@ class SwApiClient extends Client
     /**
      * @return ResponseInterface
      */
-    public function getFilms(int $page = 1)
+    public function getFilms(int $page = 1, string $search = null)
     {
-        return $this->get(sprintf('films/?page=%d', $page));
+        return $this->get(sprintf('films/?page=%d&search=%s', $page, $search));
     }
 
     /**
@@ -29,9 +29,9 @@ class SwApiClient extends Client
     /**
      * @return ResponseInterface
      */
-    public function getPlanets(int $page = 1)
+    public function getPlanets(int $page = 1, string $search = null)
     {
-        return $this->get(sprintf('planets/?page=%d', $page));
+        return $this->get(sprintf('planets/?page=%d&search=%s', $page, $search));
     }
 
     /**
@@ -49,9 +49,9 @@ class SwApiClient extends Client
      *
      * @return ResponseInterface
      */
-    public function getCharacters(int $page = 1)
+    public function getCharacters(int $page = 1, string $search = null)
     {
-        return $this->get(sprintf('people/?page=%d', $page));
+        return $this->get(sprintf('people/?page=%d&search=%s', $page, $search));
     }
 
     /**
@@ -67,9 +67,9 @@ class SwApiClient extends Client
     /**
      * @return ResponseInterface
      */
-    public function getStarships(int $page = 1)
+    public function getStarships(int $page = 1, string $search = null)
     {
-        return $this->get(sprintf('starships/?page=%d', $page));
+        return $this->get(sprintf('starships/?page=%d&search=%s', $page, $search));
     }
 
     /**
@@ -85,9 +85,9 @@ class SwApiClient extends Client
     /**
      * @return ResponseInterface
      */
-    public function getVehicles(int $page = 1)
+    public function getVehicles(int $page = 1, string $search = null)
     {
-        return $this->get(sprintf('vehicles/?page=%d', $page));
+        return $this->get(sprintf('vehicles/?page=%d&search=%s', $page, $search));
     }
 
     /**
@@ -103,9 +103,9 @@ class SwApiClient extends Client
     /**
      * @return ResponseInterface
      */
-    public function getSpecies(int $page = 1)
+    public function getSpecies(int $page = 1, string $search = null)
     {
-        return $this->get(sprintf('species/?page=%d', $page));
+        return $this->get(sprintf('species/?page=%d&search=%s', $page, $search));
     }
 
     /**

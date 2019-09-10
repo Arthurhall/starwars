@@ -16,7 +16,10 @@ class StarshipController extends AbstractController
     public function index(SwApiManager $swApiManager, Request $request)
     {
         return $this->render('starship/index.html.twig', [
-            'starships' => $swApiManager->starships()->index($request->query->getInt('page', 1)),
+            'starships' => $swApiManager->starships()->index(
+                $request->query->getInt('page', 1),
+                $request->query->get('search')
+            ),
         ]);
     }
 

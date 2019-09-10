@@ -6,9 +6,9 @@ use App\Model\Film;
 
 class FilmsEndpoint extends AbstractEndpoint
 {
-    public function index($page = 1)
+    public function index($page = 1, string $search = null)
     {
-        $response = $this->client->getFilms($page);
+        $response = $this->client->getFilms($page, $search);
 
         $collection = $this->hydrateMany($response, Film::class, $page);
 

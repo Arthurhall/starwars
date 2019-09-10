@@ -6,9 +6,9 @@ use App\Model\Species;
 
 class SpeciesEndpoint extends AbstractEndpoint
 {
-    public function index($page = 1)
+    public function index($page = 1, string $search = null)
     {
-        $response = $this->client->getSpecies($page);
+        $response = $this->client->getSpecies($page, $search);
 
         return $this->hydrateMany($response, Species::class, $page);
     }

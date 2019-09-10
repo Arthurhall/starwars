@@ -15,7 +15,10 @@ class CharacterController extends AbstractController
     public function index(SwApiManager $swApiManager, Request $request)
     {
         return $this->render('character/index.html.twig', [
-            'characters' => $swApiManager->characters()->index($request->query->getInt('page', 1)),
+            'characters' => $swApiManager->characters()->index(
+                $request->query->getInt('page', 1),
+                $request->query->get('search')
+            ),
         ]);
     }
 

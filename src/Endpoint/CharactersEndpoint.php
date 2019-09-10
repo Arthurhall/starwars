@@ -6,9 +6,9 @@ use App\Model\Character;
 
 class CharactersEndpoint extends AbstractEndpoint
 {
-    public function index($page = 1)
+    public function index($page = 1, string $search = null)
     {
-        $response = $this->client->getCharacters($page);
+        $response = $this->client->getCharacters($page, $search);
 
         return $this->hydrateMany($response, Character::class, $page);
     }

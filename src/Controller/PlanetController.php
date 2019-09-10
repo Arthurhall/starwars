@@ -15,7 +15,10 @@ class PlanetController extends AbstractController
     public function index(SwApiManager $swApiManager, Request $request)
     {
         return $this->render('planet/index.html.twig', [
-            'planets' => $swApiManager->planets()->index($request->query->getInt('page', 1)),
+            'planets' => $swApiManager->planets()->index(
+                $request->query->getInt('page', 1),
+                $request->query->get('search')
+            ),
         ]);
     }
 

@@ -15,7 +15,10 @@ class SpeciesController extends AbstractController
     public function index(SwApiManager $swApiManager, Request $request)
     {
         return $this->render('species/index.html.twig', [
-            'species_collection' => $swApiManager->species()->index($request->query->getInt('page', 1)),
+            'species_collection' => $swApiManager->species()->index(
+                $request->query->getInt('page', 1),
+                $request->query->get('search')
+            ),
         ]);
     }
 

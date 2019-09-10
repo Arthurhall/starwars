@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+    {% import '_swapi.html.twig' as swapi %}
+    {{ swapi.form_search() }}
     <table class="table">
         <thead>
             <tr>

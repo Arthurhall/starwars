@@ -6,9 +6,9 @@ use App\Model\Planet;
 
 class PlanetsEndpoint extends AbstractEndpoint
 {
-    public function index(int $page = 1)
+    public function index(int $page = 1, string $search = null)
     {
-        $response = $this->client->getPlanets($page);
+        $response = $this->client->getPlanets($page, $search);
 
         return $this->hydrateMany($response, Planet::class, $page);
     }
