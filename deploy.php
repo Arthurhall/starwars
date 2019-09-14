@@ -18,7 +18,7 @@ set('deploy_path', '~/{{application}}');
 set('http_user', 'arthurha');
 
 // Shared files/dirs between deploys
-set('shared_files', ['.env.local']);
+set('shared_files', ['.env.local', 'public/.htaccess']);
 set('shared_dirs', ['var/log']); // 'public/uploads'
 
 // Writable dirs by web server
@@ -48,7 +48,7 @@ task('build', function () {
 //})->local();
 task('upload', function () {
     run('ls -lsa {{release_path}}/');
-    run('cd {{release_path}} && mkdir -p public && mkdir -p public/build');
+    run('cd {{release_path}} && mkdir -p public/build');
     run('ls -lsa {{release_path}}/');
     upload("/f/projects/starwars/public/build", '{{release_path}}/public/');
     run('ls -lsa {{release_path}}/');
