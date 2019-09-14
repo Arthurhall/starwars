@@ -18,7 +18,7 @@ set('deploy_path', '~/{{application}}');
 set('http_user', 'arthurha');
 
 // Shared files/dirs between deploys
-set('shared_files', ['.env.local', 'public/.htaccess']);
+set('shared_files', ['.env.local']);
 set('shared_dirs', ['var/log']); // 'public/uploads'
 
 // Writable dirs by web server
