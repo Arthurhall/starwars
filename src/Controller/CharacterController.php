@@ -27,7 +27,6 @@ class CharacterController extends AbstractController
      */
     public function show($id, SwApiManager $swApiManager)
     {
-        dump($swApiManager->characters()->get($id));
         return $this->render('character/show.html.twig', [
             'character' => $swApiManager->characters()->get($id),
         ]);

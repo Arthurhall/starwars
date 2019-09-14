@@ -24,7 +24,6 @@ class FilmController extends AbstractController
      */
     public function show($id, SwApiManager $swApiManager)
     {
-        dump($swApiManager->films()->get($id));
         return $this->render('film/show.html.twig', [
             'film' => $swApiManager->films()->get($id),
         ]);
