@@ -29,6 +29,11 @@ abstract class AbstractModel
         $this->url = $url;
     }
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     public function getCreated(): DateTime
     {
         return $this->created;

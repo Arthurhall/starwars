@@ -27,7 +27,18 @@
                     <img class="header-logo" src="{{ asset('build/images/Death-Star-icon-white.png') }}" />
                     StarWars
                 </a>
-                <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+                <div class="dropdown w-100">
+                    <input id="search-autocomplete"
+                        class="form-control form-control-dark w-100 autocomplete"
+                        data-toggle="dropdown"
+                        type="text"
+                        placeholder="{{ 'Search' | trans }}"
+                        aria-label="{{ 'Search' | trans }}"
+                        data-autocomplete-url="{{ path('search_autocomplete') }}"
+                    />
+                    <div class="dropdown-menu mt-1" aria-labelledby="search-autocomplete">
+                    </div>
+                </div>
                 <ul class="navbar-nav px-3">
                     {#<li class="nav-item text-nowrap">
                         <a class="nav-link" href="#">Sign out</a>

@@ -14,6 +14,7 @@ const $ = require('jquery');
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
 const feather = require('feather-icons');
+require('./components/search-autocomplete');
 
 // or you can include specific pieces
 // require('bootstrap/js/dist/tooltip');
@@ -22,4 +23,5 @@ const feather = require('feather-icons');
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
     feather.replace();
+    $('.autocomplete').searchAutocomplete();
 });

@@ -1,0 +1,114 @@
+<div class="m-4 contain-search">
+    <div class="row">
+        {% if films.totalCount > 0 %}
+            <div class="col-auto">
+                <h4>{% trans %}Films{% endtrans %}</h4>
+                <div class="list-group">
+                    {% for film in films %}
+                        <a class="list-group-item list-group-item-action" 
+                            href="{{ path('film_show', {'id': film.url | url_to_id}) }}">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ film.name }}</h5>
+                                <small>{{ film.releaseDate | localizeddate('medium', 'none') }}</small>
+                            </div>
+                                <p class="mb-1">{{ film.director }}</p>
+                            <small>{{ film.producer }}</small>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if characters.totalCount > 0 %}
+        <div class="col-auto">
+            <h4>{% trans %}Characters{% endtrans %}</h4>
+            <div class="list-group">
+                {% for character in characters %}
+                    <a class="list-group-item list-group-item-action" 
+                        href="{{ path('character_show', {'id': character.url | url_to_id}) }}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ character.name }}</h5>
+                            <small>{{ character.birthYear }}</small>
+                        </div>
+                            <p class="mb-1">{{ character.gender | capitalize }} from {{ character.homeworld }}</p>
+                        <small>{{ character.height }} cm / {{ character.mass }} kg</small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if planets.totalCount > 0 %}
+        <div class="col-auto">
+            <h4>{% trans %}Planets{% endtrans %}</h4>
+            <div class="list-group">
+                {% for planet in planets %}
+                    <a class="list-group-item list-group-item-action" 
+                        href="{{ path('planet_show', {'id': planet.url | url_to_id}) }}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ planet.name }}</h5>
+                            <small>{{ planet.population | localizednumber }} {% trans %}inhabitants{% endtrans %}</small>
+                        </div>
+                            <p class="mb-1">{% trans %}Diameter of{% endtrans %} {{ planet.diameter | localizednumber }} {{ planet.climate }} {{ planet.terrain }} {{ planet.surfaceWater }}</p>
+                        <small>{{ planet.rotationPeriod }} / {{ planet.orbitalPeriod }}</small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row mt-4">
+        {% if species.totalCount > 0 %}
+        <div class="col-auto">
+            <h4>{% trans %}Species{% endtrans %}</h4>
+            <div class="list-group">
+                {% for species in species %}
+                    <a class="list-group-item list-group-item-action" 
+                        href="{{ path('species_show', {'id': species.url | url_to_id}) }}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ species.name }}</h5>
+                            <small>{{ species.designation }}</small>
+                        </div>
+                            <p class="mb-1">{{ species.classification | capitalize }}, {{ species.homeworld | capitalize }}</p>
+                        <small>{{ species.language }}</small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if starships.totalCount > 0 %}
+        <div class="col-auto">
+            <h4>{% trans %}Starships{% endtrans %}</h4>
+            <div class="list-group">
+                {% for starship in starships %}
+                    <a class="list-group-item list-group-item-action" 
+                        href="{{ path('starship_show', {'id': starship.url | url_to_id}) }}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ starship.name }}</h5>
+                            <small>{{ starship.model }}</small>
+                        </div>
+                            <p class="mb-1">{{ starship.starshipClass | capitalize }}</p>
+                        <small></small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if vehicles.totalCount > 0 %}
+        <div class="col-auto">
+            <h4>{% trans %}Vehicles{% endtrans %}</h4>
+            <div class="list-group">
+                {% for vehicle in vehicles %}
+                    <a class="list-group-item list-group-item-action" 
+                        href="{{ path('vehicle_show', {'id': vehicle.url | url_to_id}) }}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ vehicle.name }}</h5>
+                            <small>{{ vehicle.model | capitalize }}</small>
+                        </div>
+                            <p class="mb-1">{{ vehicle.vehicleClass | capitalize }}</p>
+                        <small></small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
