@@ -82,4 +82,39 @@ class Character extends AbstractModel
     {
         return $this->birthYear;
     }
+
+    public function getBirthYearInt()
+    {
+        if ($this->birthYear == 'unknown') {
+            return false;
+        }
+
+        preg_match('/^(\d+\.?\d*)(BBY|ABY)$/', $this->birthYear, $matches);
+        if (isset($matches[1])) {
+            $year = (float) $matches[1];
+            if (isset($matches[2]) && $matches[2] == 'BBY') {
+                $year *= -1;
+            }
+
+            return $year;
+        }
+    }
+
+    public function getMassInt()
+    {
+        if ($this->mass == 'unknown') {
+            return false;
+        }
+
+        return (float) str_replace(',', '', $this->mass);
+    }
+
+    public function getHeightInt()
+    {
+        if ($this->height == 'unknown') {
+            return false;
+        }
+
+        return (float) str_replace(',', '', $this->height);
+    }
 }

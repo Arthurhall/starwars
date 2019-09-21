@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use DateTime;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -32,5 +31,14 @@ class Starship extends Vehicle
     public function getSubName()
     {
         return $this->model;
+    }
+
+    public function getPriceInt()
+    {
+        if ($this->costInCredits == 'unknown') {
+            return false;
+        }
+
+        return (float) str_replace(',', '', $this->costInCredits);
     }
 }

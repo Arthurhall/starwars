@@ -2,10 +2,16 @@
 
 namespace App\Endpoint;
 
+use App\Model\Collection;
 use App\Model\Planet;
 
 class PlanetsEndpoint extends AbstractEndpoint
 {
+    /**
+     * @param int $page
+     * @param string $search
+     * @return Collection|Planet[]
+     */
     public function index(int $page = 1, string $search = null)
     {
         $response = $this->client->getPlanets($page, $search);

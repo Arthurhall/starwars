@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Client\SwApiClient;
+use App\Chart\StarshipData;
 use App\Manager\SwApiManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,5 +32,13 @@ class StarshipController extends AbstractController
         return $this->render('starship/show.html.twig', [
             'starship' => $swApiManager->starships()->get($id),
         ]);
+    }
+
+    /**
+     * @Route("/{_locale}/starships/chart/price", name="starship_chart_price")
+     */
+    public function chartPrice(StarshipData $data)
+    {
+        return new JsonResponse($data->getDataPrice());
     }
 }

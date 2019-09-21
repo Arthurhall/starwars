@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content_title %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div id="character-chart-year-mass-height" data-chart-url="{{ path('character_chart_year_mass_height') }}"></div>
+    <div id="planet-chart-population" data-chart-url="{{ path('planet_chart_population') }}"></div>
+    <div id="starship-chart-price" data-chart-url="{{ path('starship_chart_price') }}"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}

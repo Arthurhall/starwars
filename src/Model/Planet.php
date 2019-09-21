@@ -74,4 +74,22 @@ class Planet extends AbstractModel
     {
         return $this->diameter;
     }
+
+    public function getDiameterInt()
+    {
+        if ($this->diameter == 'unknown') {
+            return false;
+        }
+
+        return (float) str_replace(',', '', $this->diameter);
+    }
+
+    public function getPopulationInt()
+    {
+        if ($this->population == 'unknown') {
+            return false;
+        }
+
+        return (float) str_replace(',', '', $this->population);
+    }
 }

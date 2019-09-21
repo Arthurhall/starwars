@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Chart\CharacterData;
 use App\Manager\SwApiManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,5 +32,13 @@ class CharacterController extends AbstractController
         return $this->render('character/show.html.twig', [
             'character' => $swApiManager->characters()->get($id),
         ]);
+    }
+
+    /**
+     * @Route("/{_locale}/characters/chart/year-mass-height", name="character_chart_year_mass_height")
+     */
+    public function chartBearthYear(CharacterData $data)
+    {
+        return new JsonResponse($data->getDataBirthYear());
     }
 }
