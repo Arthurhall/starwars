@@ -21,7 +21,6 @@ People: Individus
 Characters: Personnages
 'Number of films': 'Nombre de films'
 'Number of character residents': 'Nombre de personnages résidents'
-
 Starship: Vaisseau
 Vehicle: Vehicule
 Character: Personnage
@@ -33,16 +32,16 @@ Character: Personnage
 'Skin colors': 'Couleur de peau'
 Height: Taille
 Mass: Masse
-Homeworld: Planète natale
+Homeworld: 'Planète natale'
 Gender: Genre
 gender: Genre
 See: Voir
 Director: Directeur
 Producer: Producteur
-'Opening crawl': Texte d'ouverture
+'Opening crawl': 'Texte d''ouverture'
 Classification: Classification
 Designation: Désignation
-'Average height': Taille moyenne
+'Average height': 'Taille moyenne'
 'Average lifespan': 'Durée de vie moyenne'
 Language: Language
 Model: Modèle
@@ -59,3 +58,10 @@ MGLT: MGLT
 'Cargo capacity': 'Capacité de cargaison'
 Consumables: Consommables
 'Vehicle class': 'Classe de véhicule'
+Search: Recherche
+'Year (0 is Battle of Yavin)': 'Année (0 Bataille de Yavin)'
+'Population by climate': 'Population par climat'
+Speed: Vitesse
+'Starship''s costs in credits & max atmosphering speed': 'Coût en crédits & vitesse atmosphérique maximum des vaisseaux'
+inhabitants: habitants
+'Diameter of': 'Diamètre de'
