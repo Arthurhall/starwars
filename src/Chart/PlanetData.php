@@ -2,55 +2,8 @@
 
 namespace App\Chart;
 
-use App\Manager\SwApiManager;
-use App\Model\Planet;
-
-class PlanetData
+class PlanetData extends AbstractData
 {
-    /**
-     * @var SwApiManager
-     */
-    private $swApiManager;
-
-    /**
-     * @param SwApiManager $swApiManager
-     */
-    public function __construct(SwApiManager $swApiManager)
-    {
-        $this->swApiManager = $swApiManager;
-    }
-
-    /**
-     * @return array
-     */
-    public function getDataDiameterPopulation(): array
-    {
-        $data = [];
-        do {
-            if (!isset($planets)) {
-                $planets = $this->swApiManager->planets()->setSerializerGroups(['property'])->index();
-            } else {
-                $planets = $planets->getNext();
-            }
-
-            foreach ($planets as $planet) {
-                if (!$planet->getDiameterInt() || !$planet->getPopulationInt()) {
-                    continue;
-                }
-                if (!isset($data[$planet->climate])) {
-                    $data[$planet->climate] = [
-                        'label' => $planet->climate,
-                        'data' => [$this->getData($planet)],
-                    ];
-                } else {
-                    $data[$planet->climate]['data'][] = $this->getData($planet);
-                }
-            }
-        } while ($planets->hasNext());
-
-        return $data;
-    }
-
     /**
      * @return array
      */
@@ -65,16 +18,18 @@ class PlanetData
             }
 
             foreach ($planets as $planet) {
-                if (!$planet->getPopulationInt()) {
+                $population = $this->strToNumConverter->convert($planet->population);
+
+                if (!$population) {
                     continue;
                 }
                 if (!isset($data[$planet->climate])) {
                     $data[$planet->climate] = [
                         'climate' => $planet->climate,
-                        'population' => $planet->getPopulationInt(),
+                        'population' => $population,
                     ];
                 } else {
-                    $data[$planet->climate]['population'] += $planet->getPopulationInt();
+                    $data[$planet->climate]['population'] += $population;
                 }
             }
         } while ($planets->hasNext());
@@ -84,19 +39,5 @@ class PlanetData
         });
 
         return array_values($data);
-    }
-
-    /**
-     * @param Planet $planet
-     * @return array
-     */
-    private function getData(Planet $planet)
-    {
-        return [
-            'x' => $planet->getPopulationInt(),
-            'y' => $planet->getPopulationInt(),
-            'r' => $planet->getDiameterInt(),
-            'label' => $planet->name,
-        ];
     }
 }

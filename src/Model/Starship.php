@@ -32,13 +32,4 @@ class Starship extends Vehicle
     {
         return $this->model;
     }
-
-    public function getPriceInt()
-    {
-        if ($this->costInCredits == 'unknown') {
-            return false;
-        }
-
-        return (float) str_replace(',', '', $this->costInCredits);
-    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use DateTime;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Serializer\Annotation\Groups;
 

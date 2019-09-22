@@ -2,22 +2,19 @@
 
 namespace App\Chart;
 
-use App\Manager\SwApiManager;
+use App\Converter\YearToIntConverter;
 use App\Model\Character;
 
-class CharacterData
+class CharacterData extends AbstractData
 {
     /**
-     * @var SwApiManager
+     * @var YearToIntConverter
      */
-    private $swApiManager;
+    private $yearToIntConverter;
 
-    /**
-     * @param SwApiManager $swApiManager
-     */
-    public function __construct(SwApiManager $swApiManager)
+    public function __construct(YearToIntConverter $converter)
     {
-        $this->swApiManager = $swApiManager;
+        $this->yearToIntConverter = $converter;
     }
 
     /**
@@ -34,16 +31,20 @@ class CharacterData
             }
 
             foreach ($characters as $character) {
-                if (!$character->getBirthYearInt() || !$character->getHeightInt() || !$character->getMassInt()) {
+                $birthYear = $this->yearToIntConverter->convert($character->birthYear);
+                $height = $this->strToNumConverter->convert($character->height);
+                $mass = $this->strToNumConverter->convert($character->mass);
+
+                if (!$birthYear || !$height || !$mass) {
                     continue;
                 }
                 if (!isset($data[$character->gender])) {
                     $data[$character->gender] = [
                         'label' => $character->gender,
-                        'data' => [$this->getData($character)],
+                        'data' => [$this->getData($character, $birthYear ,$height ,$mass)],
                     ];
                 } else {
-                    $data[$character->gender]['data'][] = $this->getData($character);
+                    $data[$character->gender]['data'][] = $this->getData($character, $birthYear ,$height ,$mass);
                 }
             }
         } while ($characters->hasNext());
@@ -53,14 +54,18 @@ class CharacterData
 
     /**
      * @param Character $character
+     * @param float $birthYear
+     * @param float $height
+     * @param float $mass
+     *
      * @return array
      */
-    private function getData(Character $character)
+    private function getData(Character $character, $birthYear ,$height ,$mass): array
     {
         return [
-            'x' => $character->getBirthYearInt(),
-            'y' => $character->getHeightInt(),
-            'r' => $character->getMassInt(),
+            'x' => $birthYear,
+            'y' => $height,
+            'r' => $mass,
             'label' => $character->name,
         ];
     }

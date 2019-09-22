@@ -1,0 +1,20 @@
+services:
+    App\Chart\AbstractData:
+        abstract: true
+        calls:
+            - [setManager, ['@App\Manager\SwApiManager']]
+            - [setStrToNumConverter, ['@App\Converter\StrToNumConverter']]
+
+    App\Chart\FilmData:
+        parent: App\Chart\AbstractData
+    App\Chart\CharacterData:
+        parent: App\Chart\AbstractData
+        arguments: ['@App\Converter\YearToIntConverter']
+    App\Chart\PlanetData:
+        parent: App\Chart\AbstractData
+    App\Chart\SpeciesData:
+        parent: App\Chart\AbstractData
+    App\Chart\StarshipData:
+        parent: App\Chart\AbstractData
+    App\Chart\VehicleData:
+        parent: App\Chart\AbstractData

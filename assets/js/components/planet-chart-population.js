@@ -1,19 +1,25 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import am4themes_dataviz from "@amcharts/amcharts4/themes/dataviz";
 
 $(document).ready(function() {
-    $('#planet-chart-population').css({
+    var id = 'planet-chart-population';
+    var $container = $('#'+id);
+
+    $container.css({
         width: '100%',
         height: '500px'
     });
-    $.get($('#planet-chart-population').data('chart-url'), function( data ) {
+    $.get($container.data('chart-url'), function( data ) {
         am4core.ready(function() {
             am4core.useTheme(am4themes_animated);
-            var chart = am4core.create("planet-chart-population", am4charts.PieChart);
+            am4core.useTheme(am4themes_dataviz);
+
+            var chart = am4core.create(id, am4charts.PieChart);
 
             var title = chart.titles.create();
-            title.text = "Population by climate";
+            title.text = $container.data('title');
             title.fontSize = 15;
             title.marginBottom = 10;
 
@@ -59,7 +65,7 @@ $(document).ready(function() {
 
             chart.data = data;
 
-            $('#planet-chart-population').after('<hr />');
+            $container.after('<hr />');
         });
     }, "json" );
 });

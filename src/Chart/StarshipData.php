@@ -2,23 +2,8 @@
 
 namespace App\Chart;
 
-use App\Manager\SwApiManager;
-
-class StarshipData
+class StarshipData extends AbstractData
 {
-    /**
-     * @var SwApiManager
-     */
-    private $swApiManager;
-
-    /**
-     * @param SwApiManager $swApiManager
-     */
-    public function __construct(SwApiManager $swApiManager)
-    {
-        $this->swApiManager = $swApiManager;
-    }
-
     /**
      * @return array
      */
@@ -33,12 +18,15 @@ class StarshipData
             }
 
             foreach ($starships as $starship) {
-                if (!$starship->getPriceInt()) {
+                $price = $this->strToNumConverter->convert($starship->costInCredits);
+
+                if (!$price) {
                     continue;
                 }
                 $data[] = [
                     'name' => $starship->getName(),
-                    'price' => $starship->getPriceInt(),
+                    'price' => $price,
+                    'speed' => $this->strToNumConverter->convert($starship->maxAtmospheringSpeed),
                 ];
             }
         } while ($starships->hasNext());
