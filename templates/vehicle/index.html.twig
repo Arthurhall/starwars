@@ -36,12 +36,12 @@
                     <td>{{ vehicle.model }}</td>
                     <td>{{ vehicle.vehicleClass }}</td>
                     <td>{{ vehicle.manufacturer }}</td>
-                    <td>{{ vehicle.costInCredits | localizednumber }}</td>
-                    <td>{{ vehicle.length | localizednumber }}</td>
-                    <td>{{ vehicle.crew | localizednumber }}</td>
-                    <td>{{ vehicle.passengers | localizednumber }}</td>
-                    <td>{{ vehicle.maxAtmospheringSpeed | localizednumber }}</td>
-                    <td>{{ vehicle.cargoCapacity | localizednumber }}</td>
+                    <td>{{ swapi.number(vehicle.costInCredits) }}</td>
+                    <td>{{ swapi.number(vehicle.length) }}</td>
+                    <td>{{ swapi.number(vehicle.crew) }}</td>
+                    <td>{{ swapi.number(vehicle.passengers) }}</td>
+                    <td>{{ swapi.number(vehicle.maxAtmospheringSpeed) }}</td>
+                    <td>{{ swapi.number(vehicle.cargoCapacity) }}</td>
                     <td>{{ vehicle.consumables }}</td>
                 </tr>
             {% endfor %}

@@ -15,3 +15,10 @@ a.navbar-brand {
         left: 8px;
     }
 }
+
+.list-group-small {
+    .list-group-item {
+        padding: .4rem .6rem;
+        font-size: .6rem;
+    }
+}

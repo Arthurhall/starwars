@@ -33,14 +33,14 @@
                             {{ planet.name }}
                         </a>
                     </th>
-                    <td>{{ planet.diameter }}</td>
-                    <td>{{ planet.population }}</td>
-                    <td>{{ planet.rotationPeriod }}</td>
-                    <td>{{ planet.orbitalPeriod }}</td>
+                    <td>{{ swapi.number(planet.diameter) }}</td>
+                    <td>{{ swapi.number(planet.population) }}</td>
+                    <td>{{ swapi.number(planet.rotationPeriod) }}</td>
+                    <td>{{ swapi.number(planet.orbitalPeriod) }}</td>
                     <td>{{ planet.climate }}</td>
                     <td>{{ planet.gravity }}</td>
                     <td>{{ planet.terrain }}</td>
-                    <td>{{ planet.surfaceWater }}</td>
+                    <td>{{ swapi.number(planet.surfaceWater) }}</td>
                     <td>{{ planet.residents|length }}</td>
                     <td>{{ planet.films|length }}</td>
                 </tr>

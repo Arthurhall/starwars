@@ -31,3 +31,12 @@
         <button type="submit" class="btn btn-sm btn-primary mb-3"><span data-feather="search"></span></button>
     </form>
 {% endmacro %}
+
+{% macro number(str) %}
+    {% set val = str | str_to_num %}
+    {% if val is same as(false) %}
+        <i data-feather="slash"></i>
+    {% else %}
+        {{ val | localizednumber }}
+    {% endif %}
+{% endmacro %}

@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Client\SwApiClient;
+use App\Converter\StrToNumConverter;
 use App\Converter\UrlToIdConverter;
 use App\Converter\UrlToPageConverter;
 use Twig\Extension\AbstractExtension;
@@ -21,6 +22,11 @@ class SwApiExtension extends AbstractExtension
     private $urlToPageConverter;
 
     /**
+     * @var StrToNumConverter
+     */
+    private $strToNumConverter;
+
+    /**
      * @var SwApiClient
      */
     private $client;
@@ -30,10 +36,15 @@ class SwApiExtension extends AbstractExtension
      * @param UrlToPageConverter $urlToPageConverter
      * @param SwApiClient $client
      */
-    public function __construct(UrlToIdConverter $urlToIdConverter, UrlToPageConverter $urlToPageConverter, SwApiClient $client)
-    {
+    public function __construct(
+        UrlToIdConverter $urlToIdConverter,
+        UrlToPageConverter $urlToPageConverter,
+        StrToNumConverter $strToNumConverter,
+        SwApiClient $client
+    ) {
         $this->urlToIdConverter = $urlToIdConverter;
         $this->urlToPageConverter = $urlToPageConverter;
+        $this->strToNumConverter = $strToNumConverter;
         $this->client = $client;
     }
 
@@ -44,6 +55,7 @@ class SwApiExtension extends AbstractExtension
             new TwigFilter('url_to_page', [$this, 'urlToPage']),
             new TwigFilter('get_people', [$this, 'getPeople']),
             new TwigFilter('get_film', [$this, 'getFilm']),
+            new TwigFilter('str_to_num', [$this, 'strToNum']),
         ];
     }
 
@@ -55,6 +67,11 @@ class SwApiExtension extends AbstractExtension
     public function urlToPage($url)
     {
         return $this->urlToPageConverter->convert($url);
+    }
+
+    public function strToNum($str)
+    {
+        return $this->strToNumConverter->convert($str);
     }
 
     public function getPeople($id)

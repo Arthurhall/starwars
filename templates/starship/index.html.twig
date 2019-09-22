@@ -38,21 +38,30 @@
                     <td>{{ starship.model }}</td>
                     <td>{{ starship.starshipClass }}</td>
                     <td>{{ starship.manufacturer }}</td>
-                    <td>{{ starship.costInCredits | localizednumber }}</td>
-                    <td>{{ starship.length | localizednumber }}</td>
-                    <td>{{ starship.crew | localizednumber }}</td>
-                    <td>{{ starship.passengers | localizednumber }}</td>
-                    <td>{{ starship.maxAtmospheringSpeed | localizednumber }}</td>
-                    <td>{{ starship.hyperdriveRating | localizednumber }}</td>
-                    <td>{{ starship.mglt | localizednumber }}</td>
-                    <td>{{ starship.cargoCapacity | localizednumber }}</td>
+                    <td>{{ swapi.number(starship.costInCredits) }}</td>
+                    <td>{{ swapi.number(starship.length) }}</td>
+                    <td>{{ swapi.number(starship.crew) }}</td>
+                    <td>{{ swapi.number(starship.passengers) }}</td>
+                    <td>{{ swapi.number(starship.maxAtmospheringSpeed) }}</td>
+                    <td>{{ swapi.number(starship.hyperdriveRating) }}</td>
+                    <td>{{ swapi.number(starship.mglt) }}</td>
+                    <td>{{ swapi.number(starship.cargoCapacity) }}</td>
                     <td>{{ starship.consumables }}</td>
+                    <td>
+                        <div class="list-group list-group-small">
+                        {% for character in starship.pilots %}
+                            <a class="list-group-item list-group-item-action text-nowrap list-group-item-primary" href="{{ path('character_show', {'id': character.url | url_to_id}) }}">
+                                {{ character }}
+                            </a>
+                        {% endfor %}
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="13">
+                <td colspan="15">
                     {% import '_paginator.html.twig' as paginator %}
                     {{ paginator.paginate(starships, 'starship_index') }}
                 </td>

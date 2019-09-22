@@ -35,8 +35,8 @@
                     <td>{{ character.eyeColor }}</td>
                     <td>{{ character.gender }}</td>
                     <td>{{ character.hairColor }}</td>
-                    <td>{{ character.height }}</td>
-                    <td>{{ character.mass }}</td>
+                    <td>{{ swapi.number(character.height) }}</td>
+                    <td>{{ swapi.number(character.mass) }}</td>
                     <td>{{ character.skinColor }}</td>
                     <td>
                         <a href="{{ path('planet_show', {'id': character.homeworld.url | url_to_id}) }}">
