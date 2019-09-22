@@ -8,11 +8,11 @@ $(document).ready(function() {
     var id = 'species-chart-characters';
     var $container = $('#'+id);
 
-    $container.css({
-        width: '100%',
-        height: '500px'
-    });
     $.get($container.data('chart-url'), function( data ) {
+        $container.css({
+            width: '100%',
+            height: '500px'
+        });
         am4core.ready(function() {
             am4core.useTheme(am4themes_dataviz);
             am4core.useTheme(am4themes_animated);

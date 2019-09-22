@@ -5,11 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    <div id="species-chart-characters" 
+    <div id="planet-chart-population"
+        data-chart-url="{{ path('planet_chart_population') }}"
+        data-title="{{ 'Population by climate' | trans }}"
+        data-y-axis-title="{{ 'Cost in credits' | trans }}"
+        data-speed="{{ 'Speed' | trans }}"
+    ></div>
+    <div id="species-chart-characters"
         data-chart-url="{{ path('species_chart_characters') }}"
         data-title="{{ 'Species & characters' | trans }}"
     ></div>
-    <div id="character-chart-year-mass-height" 
+    <div id="character-chart-year-mass-height"
         data-chart-url="{{ path('character_chart_year_mass_height') }}"
         data-title="{{ 'Characters' | trans }}"
         data-x-axis-title="{{ 'Year (0 is Battle of Yavin)' | trans }}"
@@ -18,13 +24,7 @@
         data-height="{{ 'Height' | trans }}"
         data-mass="{{ 'Mass' | trans }}"
     ></div>
-    <div id="planet-chart-population" 
-        data-chart-url="{{ path('planet_chart_population') }}"
-        data-title="{{ 'Population by climate' | trans }}"
-        data-y-axis-title="{{ 'Cost in credits' | trans }}"
-        data-speed="{{ 'Speed' | trans }}"
-    ></div>
-    <div id="starship-chart-price" 
+    <div id="starship-chart-price"
         data-chart-url="{{ path('starship_chart_price') }}"
         data-title="{{ 'Starship\'s costs in credits & max atmosphering speed' | trans }}"
         data-y-axis-title="{{ 'Cost in credits' | trans }}"
