@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block content %}
+    <div id="species-chart-characters" 
+        data-chart-url="{{ path('species_chart_characters') }}"
+        data-title="{{ 'Species & characters' | trans }}"
+    ></div>
     <div id="character-chart-year-mass-height" 
         data-chart-url="{{ path('character_chart_year_mass_height') }}"
         data-title="{{ 'Characters' | trans }}"
