@@ -46,12 +46,11 @@
                     <li class="nav-item text-nowrap">
                         {% set other_locale = (app.request.locale == 'fr') ? 'en' : 'fr' %}
 
-                        <a class="btn btn-light"
-                           href="{{ path(
+                        <a href="{{ path(
                             app.request.get('_route'),
                             app.request.get('_route_params') | merge({'_locale': other_locale})
                         ) }}">
-                            {{ other_locale|upper }}
+                            <span class="flag-icon flag-icon-{{ other_locale == 'en' ? 'gb' : other_locale }} flag-icon-squared"></span>
                         </a>
                     </li>
                 </ul>
