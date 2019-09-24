@@ -19,6 +19,7 @@
                 <th scope="col">{% trans %}Hair color{% endtrans %}</th>
                 <th scope="col">{% trans %}Height{% endtrans %}</th>
                 <th scope="col">{% trans %}Mass{% endtrans %}</th>
+                <th scope="col">{% trans %}BMI{% endtrans %}</th>
                 <th scope="col">{% trans %}Skin color{% endtrans %}</th>
                 <th scope="col">{% trans %}Homeworld{% endtrans %}</th>
             </tr>
@@ -37,6 +38,7 @@
                     <td>{{ character.hairColor }}</td>
                     <td>{{ swapi.number(character.height) }}</td>
                     <td>{{ swapi.number(character.mass) }}</td>
+                    <td>{{ swapi.bmi(character) }}</td>
                     <td>{{ character.skinColor }}</td>
                     <td>
                         <a href="{{ path('planet_show', {'id': character.homeworld.url | url_to_id}) }}">

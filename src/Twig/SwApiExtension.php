@@ -6,6 +6,7 @@ use App\Client\SwApiClient;
 use App\Converter\StrToNumConverter;
 use App\Converter\UrlToIdConverter;
 use App\Converter\UrlToPageConverter;
+use App\Model\Character;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -56,6 +57,7 @@ class SwApiExtension extends AbstractExtension
             new TwigFilter('get_people', [$this, 'getPeople']),
             new TwigFilter('get_film', [$this, 'getFilm']),
             new TwigFilter('str_to_num', [$this, 'strToNum']),
+            new TwigFilter('bmi', [$this, 'getBmi']),
         ];
     }
 
@@ -82,5 +84,19 @@ class SwApiExtension extends AbstractExtension
     public function getFilm($id)
     {
         return $this->client->getFilm($id);
+    }
+
+    /**
+     * Body Mass Index.
+     * @link https://www.calculersonimc.fr/faites-le-test.html
+     */
+    public function getBmi(Character $character)
+    {
+        $mass = $this->strToNumConverter->convert($character->mass);
+        $height = $this->strToNumConverter->convert($character->height);
+
+        if ($mass > 0 && $height > 0) {
+            return round($mass / pow(($height / 100), 2), 1);
+        }
     }
 }
