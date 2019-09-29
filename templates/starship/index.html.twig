@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content_title %}
-    {% trans %}Starships{% endtrans %}
+    {{ 'Starships' | trans | lower }}
     {% import '_swapi.html.twig' as swapi %}
     {{ swapi.total_count(starships) }}
 {% endblock %}

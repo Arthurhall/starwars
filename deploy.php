@@ -42,16 +42,18 @@ host('arthurha@starwars.arthurhall.fr')
 task('build', function () {
     run('echo {{release_path}}');
 });
-//task('build', function () {
-//    run('pwd');
-//    run('yarn encore prod');
-//})->local();
 task('upload', function () {
     run('ls -lsa {{release_path}}/');
     run('cd {{release_path}} && mkdir -p public/build');
     run('ls -lsa {{release_path}}/');
     upload("/f/projects/starwars/public/build", '{{release_path}}/public/');
     run('ls -lsa {{release_path}}/');
+});
+task('build-api-cache', function () {
+    run('wget -O/dev/null -q https://starwars.arthurhall.fr');
+    run('wget -O/dev/null -q https://starwars.arthurhall.fr/fr/films');
+    run('wget -O/dev/null -q https://starwars.arthurhall.fr/fr/planets');
+    run('wget -O/dev/null -q https://starwars.arthurhall.fr/fr/characters');
 });
 task('release', [
     'deploy:prepare',
@@ -60,23 +62,15 @@ task('release', [
     'deploy:vendors',
     'upload',
     'deploy:shared',
-    //'deploy:writable',
     'deploy:symlink',
 ]);
 
 task('deploy', [
-    //'build',
     'release',
     'cleanup',
+    'build-api-cache',
     'success'
 ]);
-//task('app:webpack', 'yarn install && yarn encore prod');
-//task('app:webpack', 'npm install && ./node_modules/.bin/encore prod');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
-
-//after('deploy:vendors', 'app:webpack');
-
-// Migrate database before symlink new release.
-//before('deploy:symlink', 'database:migrate');

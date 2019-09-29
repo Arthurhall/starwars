@@ -4,6 +4,20 @@
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+@font-face {
+    font-family: star jedi;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Star Jedi'),
+        local('StarJedi-Regular'),
+        url('/fonts/star-jedi.ttf')
+        format('truetype');
+}
+
+.star-jedi, h1 {
+    font-family: 'Star Jedi';
+}
+
 a.navbar-brand {
     padding-left: 57px;
     padding-top: .74rem;

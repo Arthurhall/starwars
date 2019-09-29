@@ -11,6 +11,7 @@ $(document).ready(function() {
     $.get($container.data('chart-url'), function( data ) {
         $container.css({
             width: '100%',
+            minWidth: '750px',
             height: '500px'
         });
         am4core.ready(function() {
